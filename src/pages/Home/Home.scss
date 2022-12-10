@@ -1,0 +1,21 @@
+@use '../../style/partials/variables' as *;
+
+.home{
+
+    &__bg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    &__container{
+        background-color: $bg-nav;
+        width: 50%;
+    }
+
+    &_logo{
+        background-color: $bg-nav;
+        width: 100%;
+    }
+}

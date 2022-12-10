@@ -1,0 +1,6 @@
+@use '../../style/partials/variables' as *;
+
+.btn_register{
+    background-color: $btn-color;
+    color: #fff;
+}
