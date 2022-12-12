@@ -1,16 +1,19 @@
 import './Home.scss';
-import mainLogo from '../../assets/Logo/Logo2.svg';
-import { useNavigate } from 'react-router-dom';
 
-export default function Home(){
-    
-    const navigate = useNavigate();
+import SideNav from '../../components/SideNav/SideNav';
+import Signin from '../SignIn/SignIn';
 
+
+
+export default function Home({handleOnSignOut, loggedIn, user}){
     return (
-        <div className="home__bg">
-            <div className="home__container">
-                <img src={mainLogo} alt="logo" className='home_logo' onClick={() => navigate('/Signin')}/>
+
+        <div className='home_page'>
+            <SideNav handleOnSignOut={handleOnSignOut}/>
+            <div className='home_page__wrapper'>
+                <Signin />
             </div>
         </div>
-    )
+
+    );
 }

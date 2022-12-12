@@ -1,4 +1,4 @@
-import './Signup.scss';
+
 import SSForm from "../../components/Signin_Signup/SSForm";
 
 export default function Signup (){

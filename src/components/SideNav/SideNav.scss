@@ -1,0 +1,32 @@
+@use '../../style/partials/variables' as * ;
+
+.sidebar{
+
+    &_container{
+        z-index: 0;
+        width: 20%;
+        height: 100vh;
+        background-color: $bg-nav;
+        padding: 2rem 0;
+        color: $btn-color;
+        font-size: 1.5rem;
+    }
+
+    &_logo{
+        width: 100%;
+    }
+
+    &_list{
+        list-style-type: none;
+        
+        &__item{
+            margin: 1rem 0;
+            padding: 1rem 2rem;
+        }
+    }
+
+}
+
+.active{
+    background-color: $nav-hover;
+}

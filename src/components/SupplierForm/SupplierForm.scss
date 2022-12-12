@@ -1,0 +1,10 @@
+@use './SupplierForm.scss';
+
+.supplier{
+
+    &_container{
+        background-color: $bg-nav;
+        width: 50%;
+        height: 600px;
+    }
+}

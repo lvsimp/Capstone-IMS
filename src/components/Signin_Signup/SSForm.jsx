@@ -10,7 +10,7 @@ import googleIcon from '../../assets/Icon/google_icon.svg';
 import microIcon from '../../assets/Icon/micro_icon.svg';
 
  
-export default function SSForm({btn_class, btn_name, microText, appleText, googleText}){
+export default function SSForm({btn_class, btn_name, microText, appleText, googleText, handleOnSubmit}){
     //icons
     const apple = <img src={appleIcon} alt="apple" className='form_icon'/>
     const google = <img src={googleIcon} alt="google" className='form_icon'/>
@@ -34,8 +34,21 @@ export default function SSForm({btn_class, btn_name, microText, appleText, googl
                         </label>
                         <input type="password" name="password" id="password" className='form__input'/>
                         <div className='form_btn_container'>
-                            <Btn icon='' classname='btn_cancel' text='cancel' onClick={() => navigate('/')}/>
-                            <Btn icon='' classname={btn_class} text={btn_name} />
+                            <Btn 
+                                icon='' 
+                                classname='btn_cancel' 
+                                text='cancel' 
+                                onClick={() => navigate('/')}
+                            />
+                            <Btn 
+                                icon='' 
+                                classname={btn_class} 
+                                text={btn_name} 
+                                onClick={() => {
+                                    handleOnSubmit();
+                                    navigate('/home')
+                                }}
+                            />
                         </div>
                     </form>
                     <div className='form_sso__container'>

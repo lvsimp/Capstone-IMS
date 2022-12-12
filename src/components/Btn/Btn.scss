@@ -13,6 +13,18 @@
         margin: 0 2rem;
     }
 
+    &_login, &_register{
+        background-color: $btn-color;
+        color: #fff;
+    }
+
+    &_logout{
+        background-color: $btn-color;
+        color: #fff;
+        width: 90%;
+        margin-left: .75rem;
+    }
+
     &_icon{
         background-color: none;
         background-color: $bg-nav;
