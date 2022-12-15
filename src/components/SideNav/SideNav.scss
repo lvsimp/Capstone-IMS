@@ -5,12 +5,17 @@
     &_container{
         z-index: 0;
         width: 20%;
-        height: 100vh;
+        height: 100%;
         background-color: $bg-nav;
         padding: 2rem 0;
         color: $btn-color;
-        font-size: 1.5rem;
+        font-size: 1rem;
+
+        &__hidden{
+            display: none;
+        }
     }
+
 
     &_logo{
         width: 100%;
@@ -18,15 +23,34 @@
 
     &_list{
         list-style-type: none;
+        display: flex;
+        flex-direction: column;
         
         &__item{
-            margin: 1rem 0;
+            margin: .5rem 0;
             padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
         }
+
+    }
+
+
+    &_icons{
+        width: 25px;
+        margin-right: .5rem;
     }
 
 }
 
 .active{
-    background-color: $nav-hover;
+    background-color: rgba(94, 91, 169, 0.2);
+}
+
+.btn_logout{
+    background-color: $btn-color;
+    color: #fff;
+    width: 90%;
+    margin-left: .75rem;
 }

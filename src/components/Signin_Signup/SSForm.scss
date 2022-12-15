@@ -80,3 +80,16 @@
         padding: 1rem;
     }
 }
+
+.btn_icon{
+    background-color: none;
+    background-color: $bg-nav;
+    border: 1px solid #8C8C8C;
+    display: flex;
+    align-items: center;
+    text-transform: none;
+    padding: .5rem 1rem;
+    border-radius: 0;
+    color: #5E5E5E;
+    margin: 1rem;
+}

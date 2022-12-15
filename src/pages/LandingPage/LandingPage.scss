@@ -2,20 +2,19 @@
 
 .landingpage{
 
+   
     &__bg{
+        background:linear-gradient(0deg, rgba(94, 91, 169, 0.5)  , $bg-nav 30% 70% ,rgba(94, 91, 169, 0.5) ) ;
+        // background: linear-gradient(0deg, red 0 50%, blue 50% 100%);
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        width: 100%;
     }
     
-    &__container{
-        background-color: $bg-nav;
-        width: 50%;
-    }
-
     &_logo{
-        background-color: $bg-nav;
-        width: 100%;
+        width: 50%;
+        height: 50%;
     }
 }

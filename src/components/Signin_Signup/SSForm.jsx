@@ -1,7 +1,8 @@
 import './SSForm.scss';
-// import { useState } from 'react';
-import Btn from '../Btn/Btn';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {Button} from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 //imports icon and logo
 import logo from '../../assets/Logo/Logo.svg';
@@ -19,42 +20,115 @@ export default function SSForm({btn_class, btn_name, microText, appleText, googl
     //navigate
     const navigate = useNavigate();
 
+    //useState
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
+
+    const [email , setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [formSubmit, setFormSubmit] = useState(false);
+
+    useEffect(() =>{
+        const jwtToken = localStorage.getItem('jwt_token');
+    
+        if(jwtToken){
+          loadProfile(jwtToken);
+        }
+      }, [])
+    
+      const loadProfile = (jwtToken) => {
+        axios
+          .get('http//localhost:8000/users', 
+            {
+              headers: {
+                Authorization: `Bearer ${jwtToken}`,
+              },
+            }
+          )
+          .then(res =>{
+            setLoggedIn(true);
+            setUser(res.data.user);
+          })
+          .catch( err => {
+            console.log(err);
+          })
+      }
+
+      const handleOnSignin = (event) => {
+        event.preventDefault();
+    
+        const userInfo = {
+          email : event.target.email.value,
+          password : event.target.password.value
+        }
+    
+        axios
+          .post(`http://localhost:8000/login`, userInfo)
+          .then(res => {
+            if(res.data.accessToken){
+              loadProfile(res.data.accessToken);
+              localStorage.setItem('jwt_token', res.data.accessToken);
+              navigate('/home');
+            }
+          })
+          .catch(err => console.log(err));
+    
+      }
+
+
+    const handleOnSignOut = () => {
+        setLoggedIn(false);
+        setUser(null);
+        localStorage.removeItem('jwt_token');
+    }
+
     return (
         <div className="form__bg">
             <div className="form__container">
                 <img src={logo} alt="logo" className='logo'/>
                 <div className="form__container_wrapper">
                     <form className='form'>
-                        <label htmlFor="email" className='form__label'> 
+                        <label 
+                            htmlFor="email" 
+                            className='form__label'
+                        > 
                             Email
                         </label>
-                        <input type="text" name="email" id="email" className='form__input' />
+                        <input 
+                            type="text" 
+                            name="email" 
+                            id="email" 
+                            className='form__input'
+                            value={email}
+                            onChange = {(e) => setEmail(e.target.value)}
+                        />
                         <label htmlFor="password" className='form__label'>
                              Password
                         </label>
-                        <input type="password" name="password" id="password" className='form__input'/>
+                        <input 
+                            type="password" 
+                            name="password" 
+                            id="password" 
+                            className='form__input'
+                            value={password}
+                            onChange = {(e) => setPassword(e.target.value)}
+                        />
                         <div className='form_btn_container'>
-                            <Btn 
-                                icon='' 
-                                classname='btn_cancel' 
-                                text='cancel' 
-                                onClick={() => navigate('/')}
-                            />
-                            <Btn 
-                                icon='' 
-                                classname={btn_class} 
-                                text={btn_name} 
-                                onClick={() => {
-                                    handleOnSubmit();
-                                    navigate('/home')
-                                }}
-                            />
+                            <Button
+                                className='btn_cancel'
+                                as={Link}
+                                to='/'
+                            >Cancel</Button>
+                            <Button
+                                className={btn_class}
+                                
+                            >{btn_name}</Button>
                         </div>
                     </form>
                     <div className='form_sso__container'>
-                            <Btn icon={apple}  text={appleText} classname='btn_icon'/>
-                            <Btn icon={google}  text={googleText} classname='btn_icon'/>
-                            <Btn icon={micro}  text={microText} classname='btn_icon'/>
+                            <Button className='btn_icon'>{apple} {appleText}</Button>
+                            <Button className='btn_icon'>{google} {googleText} </Button>
+                            <Button className='btn_icon'>{micro} {microText}</Button>
                     </div>
                 </div>
                 <p className='form__terms'>&nbsp;Terms of Use &nbsp;&nbsp;|&nbsp;&nbsp;     Privacy policy</p>
