@@ -67,12 +67,15 @@ export default function UserForm({onHandleSubmit, details}){
                     required
                 />
             </Form.Group> */}
-            <Form.Select value={role} onChange={(e) => {setRole(e.target.value)}}>
-                <option >Select A Role</option>
-                <option value="Admin">Admin</option>
-                <option value="Sales Rep">Sales Rep</option>
-                <option value="Cashier">Cashier</option>
-            </Form.Select>
+            <Form.Group>
+                <Form.Label>Role</Form.Label>
+                <Form.Select value={role} onChange={(e) => {setRole(e.target.value)}}>
+                    <option >Select A Role</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Sales Rep">Sales Rep</option>
+                    <option value="Cashier">Cashier</option>
+                </Form.Select>
+            </Form.Group>
             <Form.Group>
                 <Button className='btn_cancel' as={Link} to={'/user'}>Cancel</Button>
                 <Button className='btn_save' type='submit'>Save</Button>

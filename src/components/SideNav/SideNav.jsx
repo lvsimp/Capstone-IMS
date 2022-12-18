@@ -29,19 +29,19 @@ export default function SideNav({handleOnSignOut}){
             <img src={logo} alt='logo' className='sidebar_logo'/>
             <ul className='sidebar_list'>
                 <li>
-                    <Link className='sidebar_list__item active' to='/home'>
+                    <Link className='sidebar_list__item active' to='/dashboard'>
                         <img src={dashboard} alt='dashboard' className='sidebar_icons' /> 
                         <span> Dashboard</span>
                     </Link>
                 </li>
                 <li>
-                    <Link className='sidebar_list__item' to=''>
+                    <Link className='sidebar_list__item' to='/items'>
                         <img src={items} alt='items' className='sidebar_icons' />
                         <span>Items</span>
                     </Link>
                 </li>
                 <li>
-                    <Link className='sidebar_list__item' to=''>
+                    <Link className='sidebar_list__item' to='/reports'>
                         <img src={report} alt='report' className='sidebar_icons' />
                         <span>Reports</span>
                     </Link>

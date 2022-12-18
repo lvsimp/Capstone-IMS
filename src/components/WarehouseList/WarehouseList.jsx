@@ -11,9 +11,9 @@ export default function WarehouseList(){
     const editIcon = <img src={edit} alt="edit" className='supplier_form_edit' />;
     const delIcon = <img src={del} alt="delete" className='supplier_form_delete' />;
 
-    const [warehouseList, setWarehouseList] = useState();
     const navigate = useNavigate();
-    
+    const [warehouseList, setWarehouseList] = useState();
+     
     useEffect(() => {
         axios
         .get(`http://localhost:8000/warehouse`)
@@ -21,7 +21,7 @@ export default function WarehouseList(){
             setWarehouseList(res.data.map(item => {
                 return (
                     <tr key={item.id}>
-                        <td onClick={() => navigate(`/warehouse/${item.id}`) }>{item.name}</td>
+                        <td>{item.name}</td>
                         <td>{item.address}</td>
                         <td>
                             <Button 
@@ -41,7 +41,7 @@ export default function WarehouseList(){
     return (
         <>
             <h2 className='supplier__title'>Warehouse</h2>
-            <Button className='btn_save' as={Link} to='/addSupplier'>Add Supplier</Button>
+            <Button className='btn_save' as={Link} to='/addWarehouse'>Add Warehouse</Button>
             <table>
                 <thead>
                     <tr>

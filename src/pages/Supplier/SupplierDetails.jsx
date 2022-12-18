@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-//import of components
-import SupplierForm from '../../components/SupplierForm/SupplierForm';
+import back from '../../assets/Icon/chevron-left-solid.svg';
 
 export default function SupplierDetails(){
-    
+
     const {supplierId} = useParams();
+    const navigate = useNavigate();
     const [supplierDetail, setSupplierDetail] = useState();
 
     useEffect(() => {
@@ -23,11 +23,15 @@ export default function SupplierDetails(){
 
 
     return (
-        <>
-            {
-                supplierDetail && 
-                <SupplierForm details={supplierDetail} />
-            }
-        </>
+       <div>
+            <img src={back} alt="back btn" onClick={() => navigate('/supplier')} />
+            <h1>{supplierDetail?.name}</h1>
+            <p><span>Address:</span>{supplierDetail?.address}</p>
+            <p><span>Phone:</span>{supplierDetail?.phone}</p>
+            <p><span>Email:</span>{supplierDetail?.email}</p>
+            <p><span>Contact Person:</span>{supplierDetail?.contact_person}</p>
+            
+
+       </div>
     );
 }

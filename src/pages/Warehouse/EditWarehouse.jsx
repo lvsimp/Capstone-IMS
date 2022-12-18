@@ -13,7 +13,6 @@ export default function EditWarehouse(){
         axios
             .get(`http://localhost:8000/warehouse/${warehouseId}`)
             .then(res => {
-                console.log(res.data[0]);
                 setWarehouseDetails(res.data[0]);
             })
             .catch(err => console.log(`Can't load warehouse ${err}`));
@@ -36,6 +35,11 @@ export default function EditWarehouse(){
 
     }
     return(
-        <WarehouseForm details={warehouseDetails} onHandleSubmit={handleOnUpdateWarehouse} />
+        <>
+            {
+                warehouseDetails &&
+                <WarehouseForm title='Edit Warehouse' details={warehouseDetails} onHandleSubmit={handleOnUpdateWarehouse} />
+            }
+        </>
     );
 }

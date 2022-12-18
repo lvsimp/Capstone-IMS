@@ -24,8 +24,11 @@ export default function EditSupplier(){
 
     function onHandleUpdateSupplier(event , supplierDetails){
         event.preventDefault();
+
+        console.log(supplierDetails);
+
         axios
-            .put(`http://localhost:8080/supplier/${supplierId}`, supplierDetails)
+            .put(`http://localhost:8000/supplier/${supplierId}`, supplierDetails)
             .then(res =>{
                 console.log(res.data);
                 alert(`supplier with id ${supplierId} has been updated.`);
@@ -40,7 +43,12 @@ export default function EditSupplier(){
 
 
     return (
-        <SupplierForm details={supplierDetail} onHandleSubmit={onHandleUpdateSupplier}/>
+        <>
+            {
+                supplierDetail &&
+                <SupplierForm details={supplierDetail} onHandleSubmit={onHandleUpdateSupplier}/>
+            }
+        </>
     );
 
 }

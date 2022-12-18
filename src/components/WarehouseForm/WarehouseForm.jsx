@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import {Link, useMatch} from 'react-router-dom';
-import back from '../../assets/Icon/chevron-left-solid.svg';
+import {Link} from 'react-router-dom';
 
+export default function WarehouseForm({title, onHandleSubmit, details}){
 
-export default function WarehouseForm({onHandleSubmit, details}){
-
-    const backIcon = <img src={back} alt="back"  className='supplier_form_back'/>
 
     console.log(details?.name);
 
@@ -20,40 +17,14 @@ export default function WarehouseForm({onHandleSubmit, details}){
 
     return(
         <div>
+            <h1>{title}</h1>
             <form 
                 className='warehouse'
                 onSubmit={ e => {
-                        console.log('This was clicked')
                         onHandleSubmit(e, warehouseDetails)
                 }}
             >
-                {
-                    useMatch('/warehouse/:warehouseId') 
-                    ?<>
-                        <div className="warehouse_form">
-                            <Button className='warehouse_form__icon_back' as={Link} to='/warehouse' >{backIcon}</Button>
-                            <input 
-                                type="text" 
-                                name="warehouse_name" 
-                                id="warehouse_name" 
-                                className='warehouse_form__input_title'
-                                value={warehouseName}  
-                                readOnly={true}
-                            />
-                        </div>
-                        <label htmlFor="address" className='warehouse_form__label'>address</label>
-                        <input 
-                            type="text"
-                            name="address" 
-                            id="address" 
-                            className='warehouse_form__input'
-                            value={warehouseAddress}
-                            onChange = {e => {setWarehouseAddress(e.target.value)}}
-                            readOnly={true}
-                        />
-                    </>
-                    :<>
-                        <label htmlFor="name" className='warehouse_form__label'>Warehouse Name</label>
+                       <label htmlFor="name" className='warehouse_form__label'>Warehouse Name</label>
                         <input 
                             type="text"
                             name="name" 
@@ -61,9 +32,7 @@ export default function WarehouseForm({onHandleSubmit, details}){
                             className='warehouse_form__input'
                             value={warehouseName}
                             onChange = {e => {setWarehouseName(e.target.value)}}
-                        />
-                    </>
-                }    
+                        />   
                     <label htmlFor="address" className='warehouse_form__label'>address</label>
                     <input 
                         type="text"

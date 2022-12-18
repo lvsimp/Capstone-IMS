@@ -2,6 +2,8 @@
 import SSForm from '../../components/Signin_Signup/SSForm';
 
 export default function Signin({handleOnSigin}){
+
+    //function should be here then just pass it 
     return(
         <SSForm  
             btn_class='btn_login' 
