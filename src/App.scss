@@ -24,13 +24,13 @@ input, textarea, button, select{
 .app{
     display: flex;
     height: 100vh;
+    background-color: $bg-color;
     
     &__wrapper{
         display: flex;
         flex-grow: 1;
-        background-color: $bg-color;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+
     }
 }
 

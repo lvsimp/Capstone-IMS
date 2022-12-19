@@ -1,19 +1,30 @@
-import UserForm from "../../components/UserForm/UserForm";
+import {Form, Button} from 'react-bootstrap';
 import axios from "axios";
-import { useNavigate , useParams} from "react-router-dom";
+import { useNavigate , useParams, Link} from "react-router-dom";
 import { useState, useEffect } from "react";
+import './User.scss';
+
 
 export default function EditUsers(){
 
     const navigate = useNavigate();
     const {userId} = useParams();
-    const [userDetail, setUserDetail] = useState();
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [role, setRole] = useState('');
 
     useEffect(() => {
         axios
             .get(`http://localhost:8000/users/${userId}`)
             .then(res => {
-                setUserDetail(res.data[0]);
+                const detail = res.data[0];
+                setFirstName(detail?.first_name);
+                setLastName(detail?.last_name);
+                setEmail(detail?.email);
+                setUsername(detail?.username);
+                setRole(detail?.role);
             })
             .catch(err => console.log(`Something is wrong. Please try again later. ${err}`))
     },[userId])
@@ -21,24 +32,81 @@ export default function EditUsers(){
     const handleOnUpdateUser = (event, userDetail ) =>{
 
         event.preventDefault();
+        console.log(userDetail)
 
         axios
-            .put(`http://localhost:8000/users`, userDetail)
+            .put(`http://localhost:8000/users/${userId}`, userDetail)
             .then(res => {
                 console.log(res.data)
-                alert('a user is added.');
+                alert('a user is updated.');
                 navigate('/user');
             })
             .catch(err => console.log(`Something is wrong please try again later ${err}`));
 
     }
 
+    const  userDetail = {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        username: username,
+        role: role
+    }
+
     return(
-        <>
-            {
-                userDetail &&
-                <UserForm onHandleSubmit={handleOnUpdateUser} details={userDetail}/>
-            }
-        </>
+        <div className='user_container'>
+            <h1 className="user_title">Edit Employee</h1>
+            <Form className='user_form' onSubmit={(e) => handleOnUpdateUser(e, userDetail)}>
+                <Form.Group className='user_form_group'>
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control 
+                        type='text'
+                        value={firstName} 
+                        onChange ={(e) => setFirstName(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className='user_form_group'>
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control 
+                        type='text'
+                        value={lastName} 
+                        onChange ={(e) => setLastName(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className='user_form_group'>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control 
+                        type='email'
+                        value={email} 
+                        onChange ={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className='user_form_group'>
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control 
+                        type='text'
+                        value={username} 
+                        onChange ={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className='user_form_group'>
+                    <Form.Label>Role</Form.Label>
+                    <Form.Select value={role} onChange={(e) => {setRole(e.target.value)}}>
+                        <option >Select A Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Sales Rep">Sales Rep</option>
+                        <option value="Cashier">Cashier</option>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className='btn_container'>
+                    <Button className='btn_cancel' as={Link} to={'/user'}>Cancel</Button>
+                    <Button className='btn_save' type='submit'>Save</Button>
+                </Form.Group>
+            </Form>
+        </div>
     );
 }

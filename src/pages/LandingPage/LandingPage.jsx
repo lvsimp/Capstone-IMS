@@ -14,7 +14,7 @@ export default function LandingPage(){
                     alt="logo" 
                     className='landingpage_logo'
                     onClick={() => {
-                        navigate('/home');
+                        navigate('/dashboard');
                         }
                     }
                 />

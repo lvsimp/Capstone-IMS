@@ -1,82 +1,80 @@
-import photo from '../../assets/Images/Laura.jpg';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import photo from '../../assets/Images/business_placeholder.jpg';
 import add from '../../assets/Icon/circle-plus-solid.svg';
 import del from '../../assets/Icon/trash-can-solid.svg';
 import edit from '../../assets/Icon/pencil-solid.svg';
-import {Link,useNavigate} from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link , useNavigate } from 'react-router-dom';
+import { useEffect ,useState} from 'react';
 import {Button} from 'react-bootstrap';
 import '../../style/btn.scss';
 import axios from 'axios';
-import './User.scss';
+import './Supplier.scss';
 
-export default function UserLists(){
+export default function SupplierList(){
 
+
+    const navigate = useNavigate();
     const editIcon = <img src={edit} alt="edit" className='edit_icon' />;
     const delIcon = <img src={del} alt="delete" className='delete_icon' />;
-    const addIcon = <img src={add} alt="add" className='add_icon' onClick={() => navigate('/addUser')} />;
-    
-    const title = <h1 className='page_header__title'>Employees <span>{addIcon}</span></h1>
-    
-    const [userList, setUserList] = useState([]);
-    const navigate = useNavigate();
+    const addIcon = <img src={add} alt="add" className='add_icon' onClick={() => navigate('/addSupplier')} />;
+
+    const title = <h1 className='page_header__title'>Supplier <span>{addIcon}</span></h1>
+    const [supplierList, setSupplierList] = useState(null);
 
     useEffect(() => {
-
         axios
-            .get(`http://localhost:8000/users`)
-            .then( res => {
-                setUserList(res.data)
+            .get(`http://localhost:8000/supplier`)
+            .then(res =>{
+                setSupplierList(res.data);
             })
-            .catch(err => console.log(`Can't retrieve data from the database ${err}`))
+            .catch(err => console.log(` Unable to retrieve data ${err} `));
+    },[supplierList])
 
-    }, [userList])
 
 
-    return(
+    return (
         <>
-            <PageHeader page_title={title}/>
+            <PageHeader page_title={title}/> 
             <main>
-                <div className='user_main'>
-                    <table className='user_main_table'>
+                <div className="supplier_main">
+                    <table className='supplier_main_table'>
                         <thead>
                             <tr>
                                 <th>Image</th>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Email</th>
-                                <th>Contact Number</th>
-                                <th>Role</th>
+                                <th>Phone Number</th>
+                                <th>Last Delivery Date</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                userList && 
-                                userList.map(item => {
+                                supplierList &&
+                                supplierList.map(item => {
+                            
                                     return (
-                                        <tr className='user_row' key = {item.id}>
+                                        <tr key = {item.id} className='supplier_row'>
                                             <td>
-                                                <img src={photo} alt="profile" />
+                                                <img  src={photo} alt='supplier'/>
                                             </td>
-                                            <td>{`${item.first_name} ${item.last_name}`}</td>
-                                            <td>Vancouver</td>
-                                            <td>{item.email}</td>
-                                            <td>(495-239-2931)</td>
-                                            <td>{item.role}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.address}</td>
+                                            <td>{item.phone}</td>
+                                            <td>{new Date(item.created_on).toDateString()}</td>
                                             <td>
                                                 <Button 
                                                     className='btn_edit'
                                                     as={Link}
-                                                    to={`/editUser/${item.id}`}
+                                                    to={`/editSupplier/${item.id}`}
                                                 >{editIcon}</Button>
                                             </td>
                                             <td>
                                                 <Button className='btn_delete'>{delIcon}</Button>
                                             </td>
                                         </tr>
-                                    ) 
+                                    )
                                 })
                             }
                         </tbody>

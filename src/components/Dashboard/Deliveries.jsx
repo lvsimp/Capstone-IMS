@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
 
+
 export default function Deliveries(){
 
     const [deliveries, setDeliveries] = useState();
@@ -16,13 +17,13 @@ export default function Deliveries(){
             })
             .catch(err => console.log(err))
 
-    }, deliveries);
+    }, [deliveries]);
 
 
     
 
     return(
-        <>
+        <div className='inventory_summary_table'>
             <h2>Latest Deliveries</h2>
             <table>
                 <thead>
@@ -53,7 +54,7 @@ export default function Deliveries(){
                    }
                 </tbody>
             </table>
-        </>
+        </div>
     )
 
 }

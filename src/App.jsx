@@ -6,16 +6,15 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Signin from './pages/SignIn/SignIn';
 import Signup from  './pages/SignUp/Signup';
 import LandingPage from './pages/LandingPage/LandingPage';
-import Home from './pages/Home/Home';
 //for suppliers
 import AddSupplier from './pages/Supplier/AddSupplier';
 import EditSupplier from './pages/Supplier/EditSupplier';
 import SupplierDetails from './pages/Supplier/SupplierDetails';
-import SupplierList from './components/SupplierList/SupplierList';
+import SupplierList from './pages/Supplier/SupplierList';
 //sidenav
 import SideNav from './components/SideNav/SideNav';
 //for warehouse
-import WarehouseList from './components/WarehouseList/WarehouseList';
+import WarehouseList from './pages/Warehouse/WarehouseList';
 import AddWarehouse from './pages/Warehouse/AddWarehouse';
 import EditWarehouse from './pages/Warehouse/EditWarehouse';
 //for users/employees
@@ -33,7 +32,8 @@ import CategoryList from './pages/Items/CategoryList';
 import AddCategory from './pages/Items/AddCategory';
 import EditCategory from './pages/Items/EditCategory';
 import EditItem from './pages/Items/EditItem';
-import Deliveries from './components/Dashboard/Deliveries';
+//dashboard
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
 
@@ -47,11 +47,10 @@ function App() {
           <Routes>
             {/*  for home routes and Signin/Signup */}
               <Route path='/' element={<LandingPage />}/>
-              <Route path='/Home' element={<Home />} />
               <Route  path='/Signin' element={<Signin />}/>
               <Route path='/Signup' element={<Signup />}/>
               {/* for dashboard */}
-              <Route path='/dashboard' element={<Deliveries />}/>
+              <Route path='/dashboard' element={<Dashboard />}/>
 
               {/* for items and category */}
               <Route path='/items' element={<ItemLists />}/>
