@@ -1,0 +1,90 @@
+@use '../../style/partials/variables' as *;
+
+.user{
+    //for form css
+    &_form{
+        width: 100%;
+
+        &_group{
+            display: flex;
+            flex-direction: column;
+        }
+
+    }
+
+    &_main{
+        width: 90%;
+        padding: 1rem;
+
+        &_table{
+            width: 100%;
+            border-radius: 15px;
+            border-spacing: 0;
+            background-color: #D5E7EE;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            box-shadow: 0px 8px 10px rgba(94, 91, 169, .25);
+
+            th {
+                font-weight: bold;
+                font-size: 1.25rem;
+            }
+
+            tbody{
+                tr:last-child{
+                    td{
+                        border: 0;
+                    }
+                }
+            }
+
+        }
+    }
+
+    &_row{
+
+        td{
+            padding: 1rem 0;
+            border-bottom: 1px solid #666666;
+
+            &:first-child{
+                width: 15%;
+            }
+
+            &:nth-child(2){
+                width: 20%;
+            }
+
+            &:nth-child(3){
+                text-align: left;
+                padding: 0 0.5rem;
+            }
+
+            &:nth-child(4){
+                padding: 0 0.5rem;
+                width: 12.5%;
+            }
+
+            &:nth-child(5){
+                padding: 0 0.5rem;
+                width: 10%;
+            }
+
+            &:nth-child(6){
+                width: 7.5%;
+            }
+
+            &:nth-child(7), &:nth-child(8){
+                width: 5%;
+            }
+
+            img{
+                height: 5rem;
+                margin: auto;
+                border-radius: 15px;
+            }
+        }
+    }
+
+}

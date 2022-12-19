@@ -1,0 +1,102 @@
+@use '../../style/partials/variables' as * ;
+
+
+main {
+    padding: 1.5%;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    height: 100%;
+}
+
+.inventory_summary{
+    width: 100%;
+
+    &__insight{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 1.5rem;
+        height: 35%;
+        width: 100%;
+        padding: 0.5 1.5rem;
+    }
+
+    &_table{
+        margin-top: 2rem;
+        height: 60%;
+
+        h2{
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        table{
+            padding: 1rem 2rem 1rem 1rem;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+            border-radius: 15px;
+            background-color: #D5E7EE;
+            box-shadow: 0px 8px 10px rgba(94, 91, 169, .25);
+            border-spacing: 0;
+
+            thead{
+                font-weight: bold;
+                font-size: 1.05rem;
+                height: 2.5rem;
+                color: #5E5BA9;
+            }
+
+            tbody{
+                tr{
+                    td{
+                        height: 2.5rem;
+                        font-size: 0.85rem;
+                        border-bottom: 1px solid #666666;
+                    }
+                    &:last-child td{
+                        border: none;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.recent_activities{
+
+    h2 {
+        margin-bottom: .5rem;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    &_wrapper{
+        background-color: #D5E7EE;
+        border-radius: 15px;
+        padding: 1.5rem 1.15rem 1.25rem 1.25rem;
+        width: 20rem;
+        height: 12.5rem;
+        box-shadow: 0px 8px 10px rgba(94, 91, 169, .25);
+    }
+
+    &_item {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &_user {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    &_timestamp {
+        font-size: 0.65rem;
+        margin-top: 0.15rem;
+        color: #666666;
+    }
+}

@@ -1,0 +1,46 @@
+@use './partials/variables' as *;
+
+.btn{
+
+    &_add{
+        text-decoration: none;
+       
+    }
+    &_qr{
+        width: 30px;
+        height: 35px
+    }
+
+    &_edit{
+        width: 30px;
+        height: 35px;
+    }
+
+    &_delete{
+        padding: 0;
+        border: none;
+        background: none;
+    }
+
+    &_container{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+
+}
+
+.add_icon{
+    width: 25px;
+    margin-left: 1rem;
+    
+}
+
+.edit_icon, .delete_icon, .qr_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+}
+
