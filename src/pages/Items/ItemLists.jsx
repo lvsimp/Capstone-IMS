@@ -13,6 +13,9 @@ import './Item.scss';
 
 
 export default function ItemLists(){
+
+    const URL = process.env.REACT_APP_SERVER_URL || '';
+
     const editIcon = <img src={edit} alt="edit" className='edit_icon' />;
     const delIcon = <img src={del} alt="delete" className='delete_icon' />;
     const addIcon = <img src={add} alt="add" className='add_icon' onClick={() => navigate('/addItem')} />;
@@ -24,7 +27,7 @@ export default function ItemLists(){
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/items`)
+            .get(`${URL}/items`)
             .then(res =>{
                 setItemList(res.data)
             })

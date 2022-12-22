@@ -12,6 +12,9 @@ import microIcon from '../../assets/Icon/micro_icon.svg';
 
  
 export default function SSForm({btn_class, btn_name, microText, appleText, googleText, handleOnSubmit}){
+   
+    const URL = process.env.REACT_APP_SERVER_URL || '';
+  
     //icons
     const apple = <img src={appleIcon} alt="apple" className='form_icon'/>
     const google = <img src={googleIcon} alt="google" className='form_icon'/>
@@ -38,7 +41,7 @@ export default function SSForm({btn_class, btn_name, microText, appleText, googl
     
       const loadProfile = (jwtToken) => {
         axios
-          .get('http//localhost:8000/users', 
+          .get(`${URL}/users`, 
             {
               headers: {
                 Authorization: `Bearer ${jwtToken}`,
@@ -63,7 +66,7 @@ export default function SSForm({btn_class, btn_name, microText, appleText, googl
         }
     
         axios
-          .post(`http://localhost:8000/login`, userInfo)
+          .post(`${URL}/login`, userInfo)
           .then(res => {
             if(res.data.accessToken){
               loadProfile(res.data.accessToken);

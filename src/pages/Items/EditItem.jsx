@@ -5,13 +5,14 @@ import {useState, useEffect} from 'react';
 
 export default function EditItem(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const {itemId} = useParams();
     const navigate = useNavigate();
     const [itemDetail, setItemDetail] = useState();
     useEffect(() => {
 
         axios
-            .get(`http://localhost:8000/items/${itemId}`)
+            .get(`${URL}/items/${itemId}`)
             .then(res => setItemDetail(res.data[0]))
             .catch(err => {
                 alert(`Can't load data of the item with id ${itemId} . ${err}` )
@@ -23,7 +24,7 @@ export default function EditItem(){
         event.preventDefault();
 
         axios
-            .put(`http://localhost:8000/items/${itemId}`, detail)
+            .put(`${URL}/items/${itemId}`, detail)
             .then(res => {
                 console.log(res.data);
                 alert(`Item has been updated.`)

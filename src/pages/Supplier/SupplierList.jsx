@@ -12,7 +12,7 @@ import './Supplier.scss';
 
 export default function SupplierList(){
 
-
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
     const editIcon = <img src={edit} alt="edit" className='edit_icon' />;
     const delIcon = <img src={del} alt="delete" className='delete_icon' />;
@@ -20,15 +20,15 @@ export default function SupplierList(){
 
     const title = <h1 className='page_header__title'>Supplier <span>{addIcon}</span></h1>
     const [supplierList, setSupplierList] = useState(null);
-
+    
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/supplier`)
+            .get(`${URL}/supplier`)
             .then(res =>{
                 setSupplierList(res.data);
             })
             .catch(err => console.log(` Unable to retrieve data ${err} `));
-    },[supplierList])
+    },[supplierList, URL])
 
 
 

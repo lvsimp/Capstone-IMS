@@ -8,6 +8,8 @@ import del from '../../assets/Icon/trash-can-solid.svg';
 
 export default function CategoryList(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
+
     const editIcon = <img src={edit} alt="edit" className='supplier_form_edit' />;
     const delIcon = <img src={del} alt="delete" className='supplier_form_delete' />;
 
@@ -15,7 +17,7 @@ export default function CategoryList(){
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/category`)
+            .get(`${URL}/category`)
             .then(res => {
                 setCategoryList(res.data);
             })

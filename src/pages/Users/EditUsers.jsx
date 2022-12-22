@@ -7,6 +7,7 @@ import './User.scss';
 
 export default function EditUsers(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
     const {userId} = useParams();
     const [firstName, setFirstName] = useState('');
@@ -17,7 +18,7 @@ export default function EditUsers(){
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/users/${userId}`)
+            .get(`${URL}/users/${userId}`)
             .then(res => {
                 const detail = res.data[0];
                 setFirstName(detail?.first_name);
@@ -27,7 +28,7 @@ export default function EditUsers(){
                 setRole(detail?.role);
             })
             .catch(err => console.log(`Something is wrong. Please try again later. ${err}`))
-    },[userId])
+    },[userId, URL])
 
     const handleOnUpdateUser = (event, userDetail ) =>{
 
@@ -35,7 +36,7 @@ export default function EditUsers(){
         console.log(userDetail)
 
         axios
-            .put(`http://localhost:8000/users/${userId}`, userDetail)
+            .put(`${URL}/users/${userId}`, userDetail)
             .then(res => {
                 console.log(res.data)
                 alert('a user is updated.');

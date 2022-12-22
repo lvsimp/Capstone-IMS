@@ -5,6 +5,7 @@ import back from '../../assets/Icon/chevron-left-solid.svg';
 
 export default function SupplierDetails(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const {supplierId} = useParams();
     const navigate = useNavigate();
     const [supplierDetail, setSupplierDetail] = useState();
@@ -12,7 +13,7 @@ export default function SupplierDetails(){
     useEffect(() => {
 
         axios
-            .get(`http://localhost:8000/supplier/${supplierId}`)
+            .get(`${URL}/supplier/${supplierId}`)
             .then(res =>{
                 console.log(res.data[0]);
                 setSupplierDetail(res.data[0]);

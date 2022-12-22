@@ -4,9 +4,6 @@ import {Link} from 'react-router-dom';
 
 export default function WarehouseForm({title, onHandleSubmit, details}){
 
-
-    console.log(details?.name);
-
     const [warehouseName, setWarehouseName] = useState(details?.name);
     const [warehouseAddress, setWarehouseAddress] = useState(details?.address);
 

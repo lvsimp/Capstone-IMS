@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 
 export default function SupplierForm({onHandleSubmit, details}){
 
+
     const [supplierName , setSupplierName] = useState(details?.name);
     const [supplierAddress, setSupplierAddress] = useState(details?.address);
     const [supplierPhone, setSupplierPhone] = useState(details?.phone);

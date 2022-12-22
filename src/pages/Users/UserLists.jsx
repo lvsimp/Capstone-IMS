@@ -12,6 +12,7 @@ import './User.scss';
 
 export default function UserLists(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const editIcon = <img src={edit} alt="edit" className='edit_icon' />;
     const delIcon = <img src={del} alt="delete" className='delete_icon' />;
     const addIcon = <img src={add} alt="add" className='add_icon' onClick={() => navigate('/addUser')} />;
@@ -24,13 +25,13 @@ export default function UserLists(){
     useEffect(() => {
 
         axios
-            .get(`http://localhost:8000/users`)
+            .get(`${URL}/users`)
             .then( res => {
                 setUserList(res.data)
             })
             .catch(err => console.log(`Can't retrieve data from the database ${err}`))
 
-    }, [userList])
+    }, [userList, URL])
 
 
     return(

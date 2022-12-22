@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export default function EditCategory(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
     const {categoryId} = useParams();
     const [categoryDetail, setCategoryDetail] = useState();
@@ -12,7 +13,7 @@ export default function EditCategory(){
     useEffect(() => {
 
         axios
-            .get(`http://localhost:8000/category/${categoryId}`)
+            .get(`${URL}/category/${categoryId}`)
             .then( res => {
                 setCategoryDetail(res.data[0]);
             })
@@ -23,7 +24,7 @@ export default function EditCategory(){
     const handleOnUpdateCategory = (event, details) =>{
         event.preventDefault();
         axios
-            .put(`http://localhost:8000/category/${categoryId}`, details)
+            .put(`${URL}/category/${categoryId}`, details)
             .then(res => {
                 console.log(res.data);
                 alert('Category has been updated.')

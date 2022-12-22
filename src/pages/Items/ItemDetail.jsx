@@ -6,6 +6,7 @@ import logo from '../../assets/Logo/Logo.svg';
 
 export default function ItemDetail(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const [itemDetail, setItemDetail] = useState();
     const [qr, setQr] = useState();
     const {itemId} = useParams();
@@ -13,7 +14,7 @@ export default function ItemDetail(){
 
     useEffect(()=>{
         axios
-            .get(`http://localhost:8000/items/${itemId}`)
+            .get(`${URL}/items/${itemId}`)
             .then(res => setItemDetail(res.data[0]))
             .catch(err => console.log(`Can't load data. Please try again later. ${err}`));
         axios

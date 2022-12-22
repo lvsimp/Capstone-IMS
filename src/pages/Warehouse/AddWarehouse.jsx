@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 export default function AddWarehouse(){
 
     const navigate = useNavigate();
+    const URL = process.env.REACT_APP_SERVER_URL || '';
 
     const handleOnAddWarehouse=(event, warehouseDetails) =>{
         event.preventDefault();
         axios
-            .post('http://localhost:8000/warehouse', warehouseDetails)
+            .post(`${URL}/warehouse`, warehouseDetails)
             .then(res => {
                 console.log(res.data)
                 alert('The warehouse is added');

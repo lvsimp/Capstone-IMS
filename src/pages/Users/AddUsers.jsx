@@ -6,6 +6,7 @@ import './User.scss';
 
 export default function AddUsers(){
     const navigate = useNavigate();
+    const URL = process.env.REACT_APP_SERVER_URL || '';
 
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
@@ -28,7 +29,7 @@ export default function AddUsers(){
         event.preventDefault();
 
         axios
-            .post(`http://localhost:8000/users`, userDetail)
+            .post(`${URL}/users`, userDetail)
             .then(res => {
                 console.log(res.data)
                 alert('a user is added.');

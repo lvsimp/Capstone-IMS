@@ -5,7 +5,8 @@ import axios from 'axios';
 import back from '../../assets/Icon/chevron-left-solid.svg';
 
 export default function UserDetails(){
-    
+
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const {userId} = useParams();
     const [userDetail, setUserDetail] = useState();
     const backIcon = <img src={back} alt="back" className='btn_back' />
@@ -13,7 +14,7 @@ export default function UserDetails(){
     useEffect(() => {
 
         axios
-            .get(`http://localhost:8000/users/${userId}`)
+            .get(`${URL}/users/${userId}`)
             .then(res =>{
                 console.log(res.data[0]);
                 setUserDetail(res.data.map(item => {
@@ -30,7 +31,7 @@ export default function UserDetails(){
             })
             .catch(err => console.log(`Can't retrieve data ${err}`));
 
-    }, [userId]);
+    }, [userId, URL]);
 
 
     return (

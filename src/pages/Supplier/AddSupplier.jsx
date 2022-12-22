@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function AddSupplier(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
 
     const handleOnSubmitSupplier = (event , supplierDetails) => {
@@ -11,7 +12,7 @@ export default function AddSupplier(){
         console.log(supplierDetails)
 
         axios
-        .post(`http://localhost:8000/supplier`, supplierDetails)
+        .post(`${URL}/supplier`, supplierDetails)
         .then(res =>{
             console.log(res.data);
             alert("A new Supplier Added.");

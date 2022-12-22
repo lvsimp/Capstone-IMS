@@ -13,6 +13,8 @@ import './Warehouse.scss';
 
 export default function WarehouseList(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
+
     const navigate = useNavigate();
     const editIcon = <img src={edit} alt="edit" className='edit_icon' />;
     const delIcon = <img src={del} alt="delete" className='delete_icon' />;
@@ -23,11 +25,11 @@ export default function WarehouseList(){
      
     useEffect(() => {
         axios
-        .get(`http://localhost:8000/warehouse`)
+        .get(`${URL}/warehouse`)
         .then(res => {
             setWarehouseList(res.data);
         })
-    }, [warehouseList] )
+    }, [warehouseList, URL] )
 
     
     return (

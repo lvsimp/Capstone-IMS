@@ -6,12 +6,13 @@ import axios from 'axios';
 
 export default function Deliveries(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const [deliveries, setDeliveries] = useState();
 
     useEffect(() => {
 
         axios
-            .get(`http://localhost:8000/items/deliveries`)
+            .get(`${URL}/items/deliveries`)
             .then(res =>{
                 setDeliveries(res.data);
             })

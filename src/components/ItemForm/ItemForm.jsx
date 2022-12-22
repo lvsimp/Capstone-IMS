@@ -5,6 +5,9 @@ import {Link} from 'react-router-dom';
 
 
 export default function ItemForm({onHandleSubmit, detail}){
+
+    const URL = process.env.REACT_APP_SERVER_URL || '';
+
     //for select values
     const [categoryList, setCategoryList] = useState([]);
     const [warehouseList, setWarehouseList] =useState([]);
@@ -23,19 +26,19 @@ export default function ItemForm({onHandleSubmit, detail}){
     //for Lists Values
     useEffect(() =>{
         axios
-            .get('http://localhost:8000/warehouse')
+            .get(`${URL}/warehouse`)
             .then(res =>{
                 setWarehouseList(res.data);
             })
             .catch(err => console.log( `Can't load warehouses ${err}`));
         axios
-            .get('http://localhost:8000/supplier')
+            .get(`${URL}/supplier`)
             .then(res =>{
                 setSupplierList(res.data);
             })
             .catch(err => console.log( `Can't load Supplier ${err}`));
         axios
-            .get('http://localhost:8000/category')
+            .get(`${URL}/category`)
             .then(res =>{
                 setCategoryList(res.data);
             })

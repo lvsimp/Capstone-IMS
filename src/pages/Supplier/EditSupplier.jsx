@@ -6,6 +6,7 @@ import { useNavigate , useParams} from "react-router-dom";
 
 export default function EditSupplier(){
 
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const {supplierId} = useParams();
     const [supplierDetail, setSupplierDetail] = useState();
 
@@ -14,7 +15,7 @@ export default function EditSupplier(){
     useEffect(() =>{
 
         axios
-            .get(`http://localhost:8000/supplier/${supplierId}`)
+            .get(`${URL}/supplier/${supplierId}`)
             .then(res => {
                 setSupplierDetail(res.data[0]);
             })
@@ -28,7 +29,7 @@ export default function EditSupplier(){
         console.log(supplierDetails);
 
         axios
-            .put(`http://localhost:8000/supplier/${supplierId}`, supplierDetails)
+            .put(`${URL}/supplier/${supplierId}`, supplierDetails)
             .then(res =>{
                 console.log(res.data);
                 alert(`supplier with id ${supplierId} has been updated.`);

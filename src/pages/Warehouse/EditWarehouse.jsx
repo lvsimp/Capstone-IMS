@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 export default function EditWarehouse(){
+    const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
     const {warehouseId} = useParams();
     const [warehouseDetails, setWarehouseDetails] = useState();
@@ -11,13 +12,13 @@ export default function EditWarehouse(){
     useEffect(()=>{
 
         axios
-            .get(`http://localhost:8000/warehouse/${warehouseId}`)
+            .get(`${URL}/${warehouseId}`)
             .then(res => {
                 setWarehouseDetails(res.data[0]);
             })
             .catch(err => console.log(`Can't load warehouse ${err}`));
 
-    }, [warehouseId]);
+    }, [warehouseId, URL]);
 
     const handleOnUpdateWarehouse = (event, warehouseDetails) =>{
         event.preventDefault();
