@@ -1,0 +1,93 @@
+@use '../../style/partials/variables' as *;
+
+
+.category {
+
+    &_main{
+        width: 50%;
+        padding: 1rem;
+
+        &_table{
+            width: 100%;
+            border-radius: 15px;
+            border-spacing: 0;
+            background-color: #D5E7EE;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            box-shadow: 0px 8px 10px rgba(94, 91, 169, .25);
+            
+
+            th {
+                font-weight: bold;
+                font-size: 1.25rem;
+            }
+        
+            tbody{
+                tr:last-child{
+                    td{
+                        border: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &_row{
+
+        td{
+            padding: 1rem 0;
+            border-bottom: 1px solid #666666;
+
+            &:first-child{
+                width: 25%;
+            }
+
+            &:nth-child(2), &:nth-child(3){
+                width: 5%;
+            }
+
+        }
+    }
+
+
+
+    &_form{
+        &__input{
+            padding:.25rem .5rem;
+            border: none;
+            background-color: transparent;
+            border-radius: .5rem;
+            
+            &:focus{
+                background-color: traßnsparent;
+                outline: 1px solid $borderLine;
+            }
+
+            &--invalid{
+                outline: 1px solid $danger;
+            }
+        }
+
+        &__title{
+            text-align: center;
+        }
+
+        &__container{
+            border-radius: .5rem;
+            background-color: $bg-nav;
+            padding: 1rem 1.5rem;
+            width: 50%;
+            margin: auto;
+        }
+        
+    }
+    &__feedback{
+        color: $danger;
+        font-size: .5rem;
+    
+        &--hidden{
+            display: none;
+        }
+    }
+}

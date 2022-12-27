@@ -14,7 +14,7 @@ import warehouse from '../../assets/Icon/warehouse-solid.svg';
 import users from '../../assets/Icon/users-solid.svg';
 import setting from '../../assets/Icon/gears-solid.svg';
 import logout from '../../assets/Icon/right-from-bracket-solid.svg';
-
+import category from '../../assets/Icon/sitemap-solid.svg';
 
 
 export default function SideNav({handleOnSignOut}){
@@ -41,6 +41,10 @@ export default function SideNav({handleOnSignOut}){
             <Link className='sidebar_list__item' to='/reports'>
                 <img src={report} alt='report' className='sidebar_icons' />
                 <span>Reports</span>
+            </Link>
+            <Link className='sidebar_list__item' to='/category'>
+                <img src={category} alt='category' className='sidebar_icons' />
+                <span>Categories</span>
             </Link>
             <Link className='sidebar_list__item' to='/supplier'>
                 <img src={supplier} alt='supplier' className='sidebar_icons' />

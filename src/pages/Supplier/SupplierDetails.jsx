@@ -20,7 +20,7 @@ export default function SupplierDetails(){
             })
             .catch(err => console.log(`Can't retrieve data ${err}`));
 
-    }, [supplierId]);
+    }, [supplierId, URL]);
 
 
     return (

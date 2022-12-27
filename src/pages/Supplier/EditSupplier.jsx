@@ -21,7 +21,7 @@ export default function EditSupplier(){
             })
             .catch(err => console.log(`Can't load supplier ${err}`));
 
-    },[supplierId])
+    },[supplierId, URL])
 
     function onHandleUpdateSupplier(event , supplierDetails){
         event.preventDefault();

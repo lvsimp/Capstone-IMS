@@ -33,7 +33,7 @@ export default function ItemLists(){
             })
             .catch(err => console.log(`Something is wrong please try again later ${err}`));
 
-    }, [itemList])
+    }, [itemList, URL])
 
 
     return (

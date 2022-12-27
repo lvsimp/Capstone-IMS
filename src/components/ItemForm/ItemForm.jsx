@@ -43,7 +43,7 @@ export default function ItemForm({onHandleSubmit, detail}){
                 setCategoryList(res.data);
             })
             .catch(err => console.log( `Can't load category  ${err}`));
-    },[categoryList, warehouseList, supplierList])
+    },[URL])
 
     const itemDetail = {
         name: itemName,

@@ -19,7 +19,7 @@ export default function EditCategory(){
             })
             .catch(err => console.log(`Something is wrong Please try again later. ${err}`));
 
-    }, [categoryId]);
+    }, [categoryId, URL]);
 
     const handleOnUpdateCategory = (event, details) =>{
         event.preventDefault();

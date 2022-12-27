@@ -7,13 +7,11 @@ export default function AddCategory(){
     const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
 
-    const handleOnAddCategory = (event, categoryDetail) =>{
-        event.preventDefault();
+    const handleOnAddCategory = ( categoryDetail) =>{
 
         axios
             .post(`${URL}/category`, categoryDetail)
             .then( res => {
-                alert("Category added.");
                 console.log(res.data);
                 navigate('/category')
             })

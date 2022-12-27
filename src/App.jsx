@@ -1,4 +1,5 @@
 import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 //import pages
@@ -24,14 +25,15 @@ import EditUsers from './pages/Users/EditUsers';
 import UserDetails from './pages/Users/UserDetails';
 //for reports
 import Reports from './pages/Reports/Reports';
-//for item/inventory and category
+//for item/inventory 
 import ItemLists from './pages/Items/ItemLists';
 import ItemDetail from './pages/Items/ItemDetail'; 
 import AddItem from './pages/Items/AddItem';
-import CategoryList from './pages/Items/CategoryList';
-import AddCategory from './pages/Items/AddCategory';
-import EditCategory from './pages/Items/EditCategory';
 import EditItem from './pages/Items/EditItem';
+//category
+import CategoryList from './pages/Category/CategoryList';
+import AddCategory from './pages/Category/AddCategory';
+import EditCategory from './pages/Category/EditCategory';
 //dashboard
 import Dashboard from './pages/Dashboard/Dashboard';
 
@@ -52,11 +54,12 @@ function App() {
               {/* for dashboard */}
               <Route path='/dashboard' element={<Dashboard />}/>
 
-              {/* for items and category */}
+              {/* for items */}
               <Route path='/items' element={<ItemLists />}/>
               <Route path='/items/:itemId' element={< ItemDetail/>} />
               <Route path='/addItem' element={<AddItem />}/>
               <Route path='/editItem/:itemId' element={<EditItem />} />
+              {/* for category */}
               <Route path='/addCategory' element={<AddCategory />} />
               <Route path='/editCategory/:categoryId' element={<EditCategory />}/>
               <Route path='/category' element= {<CategoryList />} />
