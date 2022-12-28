@@ -11,7 +11,7 @@ import googleIcon from '../../assets/Icon/google_icon.svg';
 import microIcon from '../../assets/Icon/micro_icon.svg';
 
  
-export default function SSForm({btn_class, btn_name, microText, appleText, googleText, handleOnSubmit}){
+export default function SSForm({btn_class, btn_name, microText, appleText, googleText, handleOnSubmit, isSignedIn, errorMessage}){
    
     const URL = process.env.REACT_APP_SERVER_URL || '';
   
@@ -57,26 +57,7 @@ export default function SSForm({btn_class, btn_name, microText, appleText, googl
           })
       }
 
-      const handleOnSignin = (event) => {
-        event.preventDefault();
-    
-        const userInfo = {
-          email : event.target.email.value,
-          password : event.target.password.value
-        }
-    
-        axios
-          .post(`${URL}/login`, userInfo)
-          .then(res => {
-            if(res.data.accessToken){
-              loadProfile(res.data.accessToken);
-              localStorage.setItem('jwt_token', res.data.accessToken);
-              navigate('/home');
-            }
-          })
-          .catch(err => console.log(err));
-    
-      }
+      
 
 
     const handleOnSignOut = () => {
@@ -90,7 +71,11 @@ export default function SSForm({btn_class, btn_name, microText, appleText, googl
             <div className="form__container">
                 <img src={logo} alt="logo" className='logo'/>
                 <div className="form__container_wrapper">
-                    <form className='form'>
+                    {isSignedIn && <label>{errorMessage}</label>}
+                    <form 
+                      className='form'
+                      onSubmit={(e) => handleOnSubmit(e)}
+                    >
                         <label 
                             htmlFor="email" 
                             className='form__label'

@@ -1,4 +1,5 @@
 import './SideNav.scss';
+import '../../style/btn.scss';
 
 
 import {Link, useLocation, useNavigate ,useMatch} from 'react-router-dom';
@@ -62,7 +63,7 @@ export default function SideNav({handleOnSignOut}){
                 <img src={setting} alt='setting' className='sidebar_icons' />
                 <span>Setting</span>
             </Link>
-            <Button className='sidebar_list__item' as={Link} to='/'>
+            <Button className='sidebar_list__item btn' as={Link} to='/'>
                 <img src={logout} alt='logout' className='sidebar_icons'/>
                 Logout
             </Button>  
