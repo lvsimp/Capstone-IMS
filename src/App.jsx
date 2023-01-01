@@ -1,6 +1,9 @@
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { useEffect , useState} from 'react';
+import axios from 'axios';
+import {UserProvider} from './UserContext';
 
 //import pages
 //for signin/signup and home
@@ -37,51 +40,80 @@ import EditCategory from './pages/Category/EditCategory';
 //dashboard
 import Dashboard from './pages/Dashboard/Dashboard';
 
+
 function App() {
 
-  //have a useState here for navigation
+  const URL = process.env.REACT_APP_SERVER_URL || '';
+  const [user, setUser] = useState({
+          id:null,
+          role: null
+  });
+
+  useEffect(()=>{
+    const jwtToken = sessionStorage.getItem('jwt_token');
+    
+    axios
+      .get(`${URL}/user-profile`, {
+        headers:{
+          'Authorization': `Bearer ${jwtToken}`
+        }
+      })
+      .then(res => {
+        setUser({
+          id:res.data.id,
+          role: res.data.role
+        })
+      })
+
+  }, [])
+
+  const unsetUser =()=>{
+    sessionStorage.removeItem('jwt_token')
+  }
 
   return (
     <div className="app">
-      <BrowserRouter>
-        <SideNav />
-        <div className="app__wrapper">
-          <Routes>
-            {/*  for home routes and Signin/Signup */}
-              <Route path='/' element={<LandingPage />}/>
-              <Route  path='/Signin' element={<Signin />}/>
-              <Route path='/Signup' element={<Signup />}/>
-              {/* for dashboard */}
-              <Route path='/dashboard' element={<Dashboard />}/>
+      <UserProvider value={{user, setUser, unsetUser}}>
+        <BrowserRouter>
+          <SideNav />
+          <div className="app__wrapper">
+            <Routes>
+              {/*  for home routes and Signin/Signup */}
+                <Route path='/' element={<LandingPage />}/>
+                <Route  path='/Signin' element={<Signin />}/>
+                <Route path='/Signup' element={<Signup />}/>
+                {/* for dashboard */}
+                <Route path='/dashboard' element={<Dashboard />}/>
 
-              {/* for items */}
-              <Route path='/items' element={<ItemLists />}/>
-              <Route path='/items/:itemId' element={< ItemDetail/>} />
-              <Route path='/addItem' element={<AddItem />}/>
-              <Route path='/editItem/:itemId' element={<EditItem />} />
-              {/* for category */}
-              <Route path='/addCategory' element={<AddCategory />} />
-              <Route path='/editCategory/:categoryId' element={<EditCategory />}/>
-              <Route path='/category' element= {<CategoryList />} />
-              {/* for reports */}
-              <Route path='/reports' element={<Reports />}/>
-              {/* for suppliers */}
-              <Route path='/supplier' element={<SupplierList />} />
-              <Route path='/supplier/:supplierId' element={<SupplierDetails  />}/>
-              <Route path='/addSupplier' element={<AddSupplier />} />
-              <Route path='/editSupplier/:supplierId' element={<EditSupplier />} />
-              {/* for warehouses */}
-              <Route path ='/warehouse' element={<WarehouseList />}/>
-              <Route path ='/addWarehouse' element={<AddWarehouse />}/>
-              <Route path ='/editWarehouse/:warehouseId' element={<EditWarehouse />}/>
-              {/* for users/employees */}
-              <Route path = '/user' element={<UserLists />} />
-              <Route path = '/user/:userId' element={<UserDetails />}/>
-              <Route path = '/addUser' element={<AddUsers />}/>
-              <Route path = '/editUser/:userId' element={<EditUsers />}/>
-          </Routes>
-        </div>
-      </BrowserRouter>
+                {/* for items */}
+                <Route path='/items' element={<ItemLists />}/>
+                <Route path='/items/:itemId' element={< ItemDetail/>} />
+                <Route path='/addItem' element={<AddItem />}/>
+                <Route path='/editItem/:itemId' element={<EditItem />} />
+                {/* for category */}
+                <Route path='/addCategory' element={<AddCategory />} />
+                <Route path='/editCategory/:categoryId' element={<EditCategory />}/>
+                <Route path='/category' element= {<CategoryList />} />
+                {/* for reports */}
+                <Route path='/reports' element={<Reports />}/>
+                {/* for suppliers */}
+                <Route path='/supplier' element={<SupplierList />} />
+                <Route path='/supplier/:supplierId' element={<SupplierDetails  />}/>
+                <Route path='/addSupplier' element={<AddSupplier />} />
+                <Route path='/editSupplier/:supplierId' element={<EditSupplier />} />
+                {/* for warehouses */}
+                <Route path ='/warehouse' element={<WarehouseList />}/>
+                <Route path ='/addWarehouse' element={<AddWarehouse />}/>
+                <Route path ='/editWarehouse/:warehouseId' element={<EditWarehouse />}/>
+                {/* for users/employees */}
+                <Route path = '/user' element={<UserLists />} />
+                <Route path = '/user/:userId' element={<UserDetails />}/>
+                <Route path = '/addUser' element={<AddUsers />}/>
+                <Route path = '/editUser/:userId' element={<EditUsers />}/>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </UserProvider>
     </div>
   );
 }
