@@ -44,31 +44,35 @@ import Dashboard from './pages/Dashboard/Dashboard';
 function App() {
 
   const URL = process.env.REACT_APP_SERVER_URL || '';
-  const [user, setUser] = useState({
-          id:null,
-          role: null
-  });
+  const [user, setUser] = useState(null);
+  const [isloggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(()=>{
-    const jwtToken = sessionStorage.getItem('jwt_token');
+    const jwtToken = sessionStorage.getItem('token');
     
+    if(jwtToken){
+      loadProfile(jwtToken);
+    }
+
+  });
+
+  const loadProfile = (jwtToken) => {
     axios
       .get(`${URL}/user-profile`, {
         headers:{
-          'Authorization': `Bearer ${jwtToken}`
+          Authorization: `Bearer ${jwtToken}`
         }
       })
       .then(res => {
-        setUser({
-          id:res.data.id,
-          role: res.data.role
-        })
+        setUser(res.data.user)
+        setIsLoggedIn(true)
       })
-
-  }, [])
+      .catch(err => console.log(err))
+  }
 
   const unsetUser =()=>{
-    sessionStorage.removeItem('jwt_token')
+    sessionStorage.removeItem('jwt_token');
+    setUser(null);
   }
 
   return (
@@ -79,7 +83,7 @@ function App() {
           <div className="app__wrapper">
             <Routes>
               {/*  for home routes and Signin/Signup */}
-                <Route path='/' element={<LandingPage />}/>
+                <Route path='/' element={<LandingPage status = {isloggedIn} />}/>
                 <Route  path='/Signin' element={<Signin />}/>
                 <Route path='/Signup' element={<Signup />}/>
                 {/* for dashboard */}

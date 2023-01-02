@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import UserContext from '../../UserContext';
 
-export default function LandingPage(){
+export default function LandingPage({status}){
     
     const navigate = useNavigate();
     const {user} = useContext(UserContext);
@@ -16,7 +16,7 @@ export default function LandingPage(){
                     alt="logo" 
                     className='landingpage_logo'
                     onClick={() => {
-                        user.role === 'Admin'
+                         status 
                         ? navigate('/dashboard')
                         : navigate('/Signin')
                         }

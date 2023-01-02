@@ -45,14 +45,11 @@ export default function Signin(){
                     axios
                         .get(`${URL}/user-profile`, {
                             headers:{
-                                'Authorization': `Bearer ${sessionStorage.getItem('jwt_token')}`
+                                Authorization: `Bearer ${sessionStorage.getItem('token')}`
                             }
                         })
                         .then(res => {
-                            setUser({
-                                id: res.data.id,
-                                role: res.data.role
-                            })
+                            setUser(res.data.user)
                             if(res.data.role === 'Admin'){
                                 navigate('/dashboard')
                             }else{
