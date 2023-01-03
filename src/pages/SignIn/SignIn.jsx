@@ -30,7 +30,6 @@ export default function Signin(){
         axios
             .post(`${URL}/login`, detail)
             .then(res =>{
-                console.log(res.data)
                 if(res.data.accessToken){
                     
                     Swal.fire({
@@ -74,10 +73,10 @@ export default function Signin(){
         password: password
     }
 
-    console.log(detail);
+
 
     return(
-        user.id
+        user?.id
         ?
         navigate('/items')
         : 

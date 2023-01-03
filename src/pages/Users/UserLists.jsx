@@ -25,7 +25,11 @@ export default function UserLists(){
     useEffect(() => {
 
         axios
-            .get(`${URL}/users`)
+            .get(`${URL}/users`, {
+                headers : {
+                    Authorization:`Bearer ${sessionStorage.getItem('token')}` 
+                }
+            })
             .then( res => {
                 setUserList(res.data)
             })

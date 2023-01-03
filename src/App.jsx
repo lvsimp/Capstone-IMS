@@ -71,7 +71,7 @@ function App() {
   }
 
   const unsetUser =()=>{
-    sessionStorage.removeItem('jwt_token');
+    sessionStorage.removeItem('token');
     setUser(null);
   }
 
@@ -79,7 +79,7 @@ function App() {
     <div className="app">
       <UserProvider value={{user, setUser, unsetUser}}>
         <BrowserRouter>
-          <SideNav />
+          <SideNav handleOnSignOut={unsetUser}/>
           <div className="app__wrapper">
             <Routes>
               {/*  for home routes and Signin/Signup */}
