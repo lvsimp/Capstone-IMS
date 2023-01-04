@@ -1,12 +1,13 @@
 import {Form, Button} from 'react-bootstrap';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 export default function ItemForm({onHandleSubmit, detail}){
 
     const URL = process.env.REACT_APP_SERVER_URL || '';
+    const nav = useNavigate();
 
     //for select values
     const [categoryList, setCategoryList] = useState([]);
@@ -57,27 +58,28 @@ export default function ItemForm({onHandleSubmit, detail}){
 
     return(
         <Form
+            className='item_form'
             onSubmit={(e) => onHandleSubmit(e, itemDetail)}
         >
-            <Form.Group>
+            <Form.Group className='item_form__group'>
                 <Form.Label>Name</Form.Label>
                 <Form.Control value={itemName} onChange={e => setItemName(e.target.value)} />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='item_form__group'>
                 <Form.Label>Description</Form.Label>
                 <Form.Control value={description} onChange={e => setDescription(e.target.value)}/>
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='item_form__group'>
                 <Form.Label>Price</Form.Label>
                 <Form.Control value={price} onChange={e => setPrice(e.target.value)}/>
 
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='item_form__group'>
                 <Form.Label>Quantity</Form.Label>
                 <Form.Control value={qty} onChange={e => setQty(e.target.value)}/>
 
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='item_form__group'>
                 <Form.Label>Category</Form.Label>
                 <Form.Select value={category} onChange={e => setCategory(e.target.value)}>
                     <option value="">- select category -</option>
@@ -89,7 +91,7 @@ export default function ItemForm({onHandleSubmit, detail}){
                     }
                 </Form.Select>
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='item_form__group'>
                 <Form.Label>Warehouse</Form.Label>
                 <Form.Select value={warehouse} onChange={e => setWarehouse(e.target.value)}>
                     <option value="">- select warehouse -</option>
@@ -102,7 +104,7 @@ export default function ItemForm({onHandleSubmit, detail}){
                     }
                 </Form.Select>
             </Form.Group>
-            <Form.Group>
+            <Form.Group className='item_form__group'>
                 <Form.Label>Supplier</Form.Label>
                 <Form.Select value={supplier} onChange={e => setSupplier(e.target.value)}>
                     <option value="">- select supplier -</option>
@@ -115,9 +117,9 @@ export default function ItemForm({onHandleSubmit, detail}){
                     }
                 </Form.Select>
             </Form.Group>
-            <Form.Group>
-                <Button className='btn_cancel' as={Link} to={'/items'}>Cancel</Button>
+            <Form.Group className='item_form__group'>
                 <Button className='btn_save' type='submit'>Save</Button>
+                <Button className='btn_cancel' onClick={()=>nav('/items')}>Cancel</Button>
             </Form.Group>
         </Form>
     );

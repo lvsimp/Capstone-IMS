@@ -34,7 +34,7 @@
     &_row{
 
         td{
-            padding: 1rem 0;
+            padding: 1rem;
             border-bottom: 1px solid #666666;
 
             &:first-child, &:nth-child(2){
@@ -58,6 +58,9 @@
 
             &:nth-child(6), &:nth-child(7){
                 width: 5%;
+                img{
+                    margin-top: -2rem;
+                }
             }
 
             img{

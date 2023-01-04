@@ -56,8 +56,12 @@
                 width: 15%;
             }
 
-            &:nth-child(6), &:nth-child(7) &:nth-child(8){
+            &:nth-child(6), &:nth-child(7), &:nth-child(8){
                 width: 5%;
+                img{
+                    margin-top: -2rem;
+                }
+                
             }
 
             img{
@@ -105,6 +109,20 @@
         }
     }
 
+    &_form{
+        background-color: $bg-nav;
+        padding: 1rem 2rem;
+        border-radius: .75rem;
+        &__group{
+            margin: 1rem 0;
+
+            &:last-child{
+               display: flex;
+               justify-content: flex-end;
+            }
+        }
+    }
+
 }
 
 .bold{
@@ -130,3 +148,4 @@
     align-items: center;
     color: #5E5BA9;
 }
+

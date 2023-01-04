@@ -3,6 +3,8 @@
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: transparent;
     border: none;
+    color: $btn-color;
+    padding: 0;
 }
 
 .btn{
@@ -12,18 +14,21 @@
        
     }
     &_qr{
-        width: 30px;
-        height: 35px
+        width: 50px;
+        height: 35px;
     }
 
     &_edit{
-        width: 50px;
+        width: 30px;
         height: 35px;
         background-color: transparent;
         border: none;
     }
 
     &_delete{
+        width: 30px;
+        height: 35px;
+        margin-top: .5rem;
         padding: 0;
         border: none;
         background: none;
@@ -36,6 +41,16 @@
         margin-top: 1rem;
     }
 
+    &_save{
+        background-color: $btn-color;
+        color: white;
+        padding: .5rem 1rem;
+    }
+
+    &_cancel{
+        padding: .5rem 1rem;
+        border: 1px solid $btn-color;
+    }
 
 }
 
@@ -45,10 +60,4 @@
     
 }
 
-.edit_icon, .delete_icon, .qr_icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25px;
-}
 

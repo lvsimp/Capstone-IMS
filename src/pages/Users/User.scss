@@ -13,7 +13,7 @@
     }
 
     &_main{
-        width: 90%;
+        width: 95%;
         padding: 1rem;
 
         &_table{
@@ -45,7 +45,7 @@
     &_row{
 
         td{
-            padding: 1rem 0;
+            padding: 1rem;
             border-bottom: 1px solid #666666;
 
             &:first-child{
@@ -68,7 +68,7 @@
 
             &:nth-child(5){
                 padding: 0 0.5rem;
-                width: 10%;
+                width: 12%;
             }
 
             &:nth-child(6){
@@ -76,7 +76,11 @@
             }
 
             &:nth-child(7), &:nth-child(8){
-                width: 5%;
+                width: 2%;
+                width: auto;
+                img{
+                    margin-top: -2rem;
+                }
             }
 
             img{

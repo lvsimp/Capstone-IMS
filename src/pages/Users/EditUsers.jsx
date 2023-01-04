@@ -18,7 +18,11 @@ export default function EditUsers(){
 
     useEffect(() => {
         axios
-            .get(`${URL}/users/${userId}`)
+            .get(`${URL}/users/${userId}`, {
+                headers : {
+                    Authorization:`Bearer ${sessionStorage.getItem('token')}` 
+                }
+            })
             .then(res => {
                 const detail = res.data[0];
                 setFirstName(detail?.first_name);
