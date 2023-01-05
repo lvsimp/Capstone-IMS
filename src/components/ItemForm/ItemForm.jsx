@@ -22,6 +22,8 @@ export default function ItemForm({onHandleSubmit, detail}){
     const [category, setCategory] = useState(detail?.category_id);
     const [supplier, setSupplier] = useState(detail?.supplier_id);
     const [warehouse, setWarehouse] = useState(detail?.warehouse_id);
+    const [file, setFile] = useState(detail?.images);
+
 
 
     //for Lists Values
@@ -46,20 +48,37 @@ export default function ItemForm({onHandleSubmit, detail}){
             .catch(err => console.log( `Can't load category  ${err}`));
     },[URL])
 
-    const itemDetail = {
-        name: itemName,
-        description: description,
-        price: price,
-        quantity: qty,
-        category_id: category,
-        warehouse_id: warehouse,
-        supplier_id: supplier
-    }
+    // const itemDetail ={
+    //     name : itemName,
+    //     description: description, 
+    //     price: price,
+    //     quantity: qty,
+    //     category_id: category,
+    //     supplier_id: supplier,
+    //     warehouse_id: warehouse,
+    //     images: file.name
+    // }
+
+   
+
 
     return(
         <Form
             className='item_form'
-            onSubmit={(e) => onHandleSubmit(e, itemDetail)}
+            onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData();
+                    formData.append("images", file, file.name)
+                    formData.append("name", itemName)
+                    formData.append("description", description)
+                    formData.append("price", price)
+                    formData.append("quantity", qty)
+                    formData.append("category_id", category)
+                    formData.append("warehouse_id", warehouse)
+                    formData.append("supplier_id", supplier)
+
+                onHandleSubmit(formData)
+            }}
         >
             <Form.Group className='item_form__group'>
                 <Form.Label>Name</Form.Label>
@@ -116,6 +135,21 @@ export default function ItemForm({onHandleSubmit, detail}){
                         })
                     }
                 </Form.Select>
+            </Form.Group>
+            <Form.Group className='item_form__group'>
+                <Form.Label>Item Image Upload</Form.Label>
+                <div className="item_form__group_img">
+                    <img src={`${URL}/${file}`}/>
+                    <Form.Control 
+                    name = "images"
+                    type='file'  
+                    onChange={e =>{
+                            if(e.target.files){
+                                setFile(e.target.files[0]);
+                            }
+                        } 
+                    } />
+                </div>
             </Form.Group>
             <Form.Group className='item_form__group'>
                 <Button className='btn_save' type='submit'>Save</Button>

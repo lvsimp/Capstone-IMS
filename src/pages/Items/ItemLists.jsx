@@ -1,5 +1,4 @@
 import PageHeader from '../../components/PageHeader/PageHeader';
-import photo from '../../assets/Images/item_placeholder.jpg';
 import add from '../../assets/Icon/circle-plus-solid.svg';
 import del from '../../assets/Icon/trash-can-solid.svg';
 import qrcode from '../../assets/Icon/qrcode-solid.svg';
@@ -61,7 +60,7 @@ export default function ItemLists(){
                                 return(
                                     <tr key= {item.id} className='item_row'>
                                         <td>
-                                            <img src={photo} alt="item" />    
+                                            <img src={`${URL}/${item.images}`} alt="item" />    
                                         </td>
                                         <td>{item.name}</td>
                                         <td>{item.description}</td>

@@ -1,4 +1,3 @@
-import photo from '../../assets/Images/Laura.jpg';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import add from '../../assets/Icon/circle-plus-solid.svg';
 import del from '../../assets/Icon/trash-can-solid.svg';
@@ -35,7 +34,7 @@ export default function UserLists(){
             })
             .catch(err => console.log(`Can't retrieve data from the database ${err}`))
 
-    }, [userList, URL])
+    }, [URL])
 
 
     return(
@@ -63,7 +62,7 @@ export default function UserLists(){
                                     return (
                                         <tr className='user_row' key = {item.id}>
                                             <td>
-                                                <img src={photo} alt="profile" />
+                                                <img src={`${URL}/${item.image}`} alt="profile" />
                                             </td>
                                             <td>{`${item.first_name} ${item.last_name}`}</td>
                                             <td>Vancouver</td>

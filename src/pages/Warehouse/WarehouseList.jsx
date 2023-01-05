@@ -1,4 +1,3 @@
-import photo from '../../assets/Images/warehouse_placeholder.jpg';
 import PageHeader from '../../components/PageHeader/PageHeader';
 import add from '../../assets/Icon/circle-plus-solid.svg';
 import del from '../../assets/Icon/trash-can-solid.svg';
@@ -57,7 +56,7 @@ export default function WarehouseList(){
                                     return (
                                         <tr key={item.id} className='warehouse_row'>
                                             <td>
-                                                <img src={photo} alt="warehouse" />
+                                                <img src={`${URL}/${item.images}`} alt="warehouse" />
                                             </td>
                                             <td>{item.name}</td>
                                             <td>{item.address}</td>

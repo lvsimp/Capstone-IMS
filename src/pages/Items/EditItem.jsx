@@ -22,13 +22,15 @@ export default function EditItem(){
 
     }, [itemId, URL])
 
-    const handleOnUpdateItem = (event, detail) =>{
-        event.preventDefault();
-
+    const handleOnUpdateItem = ( detail) =>{
+       
         axios
-            .put(`${URL}/items/${itemId}`, detail)
+            .put(`${URL}/items/${itemId}`, detail, {
+                headers: {'Content-Type' : 'multipart/form-data'}
+            })
             .then(res => {
                 console.log(res.data);
+                console.log(detail)
                 alert(`Item has been updated.`)
                 navigate('/items')
             })

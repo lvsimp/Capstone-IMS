@@ -1,5 +1,4 @@
 import './PageHeader.scss';
-import avatar from '../../assets/Icon/user-solid.svg';
 import UserContext from '../../UserContext';
 import { useContext} from 'react';
 
@@ -8,6 +7,7 @@ import { useContext} from 'react';
 export default function PageHeader({page_title }){
 
     const {user} = useContext(UserContext);
+    const URL = process.env.REACT_APP_SERVER_URL || '';
 
     return ( 
        <div className='page_header'>
@@ -17,7 +17,7 @@ export default function PageHeader({page_title }){
                     <p>Hey! <span>{user?.name}</span></p>
                     <p>{user?.role}</p>
                 </div>
-                <img src={avatar} alt='user' className='avatar'/>
+                <img src={`${URL}/${user?.avatar}`} alt='user' className='avatar'/>
             </div>
        </div>
 

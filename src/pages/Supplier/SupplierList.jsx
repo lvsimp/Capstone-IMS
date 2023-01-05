@@ -1,5 +1,4 @@
 import PageHeader from '../../components/PageHeader/PageHeader';
-import photo from '../../assets/Images/business_placeholder.jpg';
 import add from '../../assets/Icon/circle-plus-solid.svg';
 import del from '../../assets/Icon/trash-can-solid.svg';
 import edit from '../../assets/Icon/pencil-solid.svg';
@@ -57,7 +56,7 @@ export default function SupplierList(){
                                     return (
                                         <tr key = {item.id} className='supplier_row'>
                                             <td>
-                                                <img  src={photo} alt='supplier'/>
+                                                <img  src={`${URL}/${item.images}`} alt='supplier'/>
                                             </td>
                                             <td>{item.name}</td>
                                             <td>{item.address}</td>

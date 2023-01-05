@@ -10,11 +10,12 @@ export default function AddItem(){
     const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
 
-    const handleOnAddItem = (event, details) => {
-        event.preventDefault();
-        console.log(details);
+    const handleOnAddItem = ( details) => {
+       
         axios
-            .post(`${URL}/items` , details)
+            .post(`${URL}/items` , details, {
+                headers: {'Content-Type' : 'multipart/form-data'}
+            })
             .then(res => {
                 console.log(res.data)
                 alert('Item has been added.')

@@ -6,10 +6,15 @@ import warning from '../../assets/Icon/boxes-stacked-warning.svg';
 import danger from '../../assets/Icon/boxes-stacked-danger.svg';
 import go from '../../assets/Icon/boxes-stacked-go.svg';
 import './Dashboard.scss';
+import { useEffect } from "react";
 
 export default function Dashboard(){
 
     const title = <h1 className="page_header__title">Dashboard</h1>
+
+    useEffect(()=>{
+
+    },[]);
 
     return(
         <>
