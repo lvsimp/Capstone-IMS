@@ -2,17 +2,20 @@ import axios from 'axios';
 import WarehouseForm from '../../components/WarehouseForm/WarehouseForm';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 export default function EditWarehouse(){
     const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
     const {warehouseId} = useParams();
     const [warehouseDetails, setWarehouseDetails] = useState();
+    const title = <h1 className='page_header__title'> Edit Warehouse</h1>
+
 
     useEffect(()=>{
 
         axios
-            .get(`${URL}/${warehouseId}`)
+            .get(`${URL}/warehouse/${warehouseId}`)
             .then(res => {
                 setWarehouseDetails(res.data[0]);
             })
@@ -20,10 +23,12 @@ export default function EditWarehouse(){
 
     }, [warehouseId, URL]);
 
-    const handleOnUpdateWarehouse = (event, warehouseDetails) =>{
-        event.preventDefault();
+    const handleOnUpdateWarehouse = (warehouseDetails) =>{
+  
         axios
-            .put(`http://localhost:8000/warehouse/${warehouseId}`, warehouseDetails)
+            .put(`${URL}/warehouse/${warehouseId}`, warehouseDetails, {
+                headers: {'Content-Type' : 'multipart/form-data'}
+            })
             .then(res => {
                 console.log(res.data);
                 alert(`Warehouse with ${warehouseId} has been updated`);
@@ -37,10 +42,15 @@ export default function EditWarehouse(){
     }
     return(
         <>
-            {
-                warehouseDetails &&
-                <WarehouseForm title='Edit Warehouse' details={warehouseDetails} onHandleSubmit={handleOnUpdateWarehouse} />
-            }
+            <PageHeader page_title={title}/>
+            <main>
+                <div className="warehouse_main">
+                    {
+                        warehouseDetails &&
+                        <WarehouseForm details={warehouseDetails} onHandleSubmit={handleOnUpdateWarehouse} />
+                    }
+                </div>
+            </main>
         </>
     );
 }

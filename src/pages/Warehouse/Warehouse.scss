@@ -71,4 +71,35 @@
         }
 
     }
+
+    &_form{
+        background-color: $bg-nav;
+        padding: 1rem 2rem;
+        border-radius: .75rem;
+
+        &__group{
+            margin: 1rem 0;
+
+            &:last-child{
+                display: flex;
+                justify-content: flex-end;
+             }
+ 
+             &_img{
+                 display: flex;
+                 height: 100px;
+                 justify-content: space-between;
+             }
+ 
+             &_input{
+                 width: 80%;
+                 height: 2.3rem;
+                 align-self: center;
+             }
+        }
+    }
+}
+
+.img_hidden{
+    display: none;
 }

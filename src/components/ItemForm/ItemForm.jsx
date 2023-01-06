@@ -23,7 +23,7 @@ export default function ItemForm({onHandleSubmit, detail}){
     const [supplier, setSupplier] = useState(detail?.supplier_id);
     const [warehouse, setWarehouse] = useState(detail?.warehouse_id);
     const [file, setFile] = useState(detail?.images);
-
+    const [preview, setPreview] = useState()
 
 
     //for Lists Values
@@ -139,13 +139,16 @@ export default function ItemForm({onHandleSubmit, detail}){
             <Form.Group className='item_form__group'>
                 <Form.Label>Item Image Upload</Form.Label>
                 <div className="item_form__group_img">
-                    <img src={`${URL}/${file}`}/>
+                    <img className={preview || file ?'':'img_hidden'} src={preview || `${URL}/${file}`} alt ='preview'/>
                     <Form.Control 
+                    className='item_form__group_input'
                     name = "images"
                     type='file'  
                     onChange={e =>{
                             if(e.target.files){
                                 setFile(e.target.files[0]);
+                                const newfile = window.URL.createObjectURL(e.target.files[0]);
+                                setPreview(newfile);
                             }
                         } 
                     } />
