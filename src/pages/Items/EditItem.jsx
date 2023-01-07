@@ -3,6 +3,7 @@ import ItemForm from '../../components/ItemForm/ItemForm';
 import { useNavigate, useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Swal from 'sweetalert2';
 
 export default function EditItem(){
     
@@ -22,17 +23,21 @@ export default function EditItem(){
 
     }, [itemId, URL])
 
-    const handleOnUpdateItem = ( detail) =>{
+    const handleOnUpdateItem = (detail) =>{
        
         axios
             .put(`${URL}/items/${itemId}`, detail, {
                 headers: {'Content-Type' : 'multipart/form-data'}
             })
             .then(res => {
-                console.log(res.data);
-                console.log(detail)
-                alert(`Item has been updated.`)
-                navigate('/items')
+                if(res.data){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Update Successful',
+                        text: ` You updated ${res.data[0].name}`
+                    })
+                    navigate('/warehouse');
+                }
             })
             .catch(err => console.log(`Can't Update item. ${err}`))
         

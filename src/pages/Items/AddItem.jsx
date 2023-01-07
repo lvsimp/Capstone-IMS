@@ -2,6 +2,7 @@ import ItemForm from '../../components/ItemForm/ItemForm';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Swal from 'sweetalert2';
 
 export default function AddItem(){
 
@@ -17,11 +18,22 @@ export default function AddItem(){
                 headers: {'Content-Type' : 'multipart/form-data'}
             })
             .then(res => {
-                console.log(res.data)
-                alert('Item has been added.')
-                navigate('/items')
+               if(res.data){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Added Item Successfully',
+                    text:  `You added ${res.data[0].name}`
+                })
+                navigate('/items');
+               }
             })
-            .catch(err => console.log(`Something is wrong. Please try again later. ${err}`))
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unexpected Error',
+                    text: err
+                })
+            })
     }
 
 

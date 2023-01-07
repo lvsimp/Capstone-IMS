@@ -21,15 +21,20 @@ export default function WarehouseList(){
 
     const title = <h1 className='page_header__title'>Warehouse <span>{addIcon}</span></h1>
     const [warehouseList, setWarehouseList] = useState();
-     
+    
+
+
     useEffect(() => {
         axios
         .get(`${URL}/warehouse`)
         .then(res => {
+            console.log(res.data)
             setWarehouseList(res.data);
         })
-    }, [warehouseList, URL] )
+        .catch(err => console.log(err));
+    }, [URL] )
 
+    
     
     return (
         <>

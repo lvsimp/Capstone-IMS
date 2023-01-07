@@ -2,7 +2,7 @@ import axios from "axios";
 import WarehouseForm from "../../components/WarehouseForm/WarehouseForm";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../../components/PageHeader/PageHeader";
-
+import Swal from "sweetalert2";
 
 export default function AddWarehouse(){
 
@@ -10,18 +10,29 @@ export default function AddWarehouse(){
     const navigate = useNavigate();
     const URL = process.env.REACT_APP_SERVER_URL || '';
 
-    const handleOnAddWarehouse=(event, warehouseDetails) =>{
-        event.preventDefault();
+    const handleOnAddWarehouse=( warehouseDetails) =>{
+       
         axios
-            .post(`${URL}/warehouse`, warehouseDetails)
+            .post(`${URL}/warehouse`, warehouseDetails , {
+                headers: {'Content-Type' : 'multipart/form-data'}
+            })
             .then(res => {
                 console.log(res.data)
-                alert('The warehouse is added');
-                navigate('/warehouse')
+               if(res.data){
+                Swal.fire({
+                    icon: 'success', 
+                    title: 'Added Warehouse Sucessfully',
+                    text: `You added ${res.data[0].name}`
+                })
+                navigate('/warehouse');
+               }
             })
             .catch(err => {
-                alert('Something is wrong please try again later.');
-                console.log(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unexpected Error',
+                    text: `${err}`
+                })
             });
     }
 
