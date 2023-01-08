@@ -3,6 +3,7 @@ import { Button , Form} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 
 
+
 export default function WarehouseForm({ onHandleSubmit, details}){
 
     const URL = process.env.REACT_APP_SERVER_URL || '';
@@ -17,10 +18,12 @@ export default function WarehouseForm({ onHandleSubmit, details}){
                 onSubmit={(e) => {
                     e.preventDefault();
                     const formData = new FormData();
+                    formData.append("address", warehouseAddress)
+                    formData.append("name", warehouseName)
+
+                    if(typeof file === 'object'){
                         formData.append("images", file, file.name)
-                        formData.append("name", warehouseName)
-                        formData.append("address", warehouseAddress)
-    
+                    }
                     onHandleSubmit(formData)
                 }}
             >
@@ -54,6 +57,7 @@ export default function WarehouseForm({ onHandleSubmit, details}){
                     className='warehouse_form__group_input'
                     name = "images"
                     type='file'  
+                    
                     onChange={e =>{
                             if(e.target.files){
                                 setFile(e.target.files[0]);

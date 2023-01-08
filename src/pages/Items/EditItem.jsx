@@ -36,7 +36,7 @@ export default function EditItem(){
                         title: 'Update Successful',
                         text: ` You updated ${res.data[0].name}`
                     })
-                    navigate('/warehouse');
+                    navigate('/items');
                 }
             })
             .catch(err => console.log(`Can't Update item. ${err}`))

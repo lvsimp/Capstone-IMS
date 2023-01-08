@@ -8,12 +8,11 @@ export default function AddSupplier(){
     const navigate = useNavigate();
     const title = <h1 className='page_header__title'> Add Supplier</h1>
 
-    const handleOnSubmitSupplier = (event , supplierDetails) => {
-        event.preventDefault();
-        console.log(supplierDetails)
-
-        axios
-        .post(`${URL}/supplier`, supplierDetails)
+    const handleOnSubmitSupplier = ( supplierDetails) => {
+     axios
+        .post(`${URL}/supplier`, supplierDetails , {
+            headers: {'Content-Type' : 'multipart/form-data'}
+        })
         .then(res =>{
             console.log(res.data);
             alert("A new Supplier Added.");

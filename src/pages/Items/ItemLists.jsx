@@ -32,6 +32,7 @@ export default function ItemLists(){
             })
             .catch(err => console.log(`Something is wrong please try again later ${err}`));
 
+
     }, [itemList, URL])
 
 
@@ -57,6 +58,7 @@ export default function ItemLists(){
                         {
                             itemList && 
                             itemList.map(item =>{
+                               
                                 return(
                                     <tr key= {item.id} className='item_row'>
                                         <td>
@@ -65,7 +67,7 @@ export default function ItemLists(){
                                         <td>{item.name}</td>
                                         <td>{item.description}</td>
                                         <td>{item.quantity}</td>
-                                        <td>Warehouse 1</td>
+                                        <td>{item.warehouse}</td>
                                         <td>
                                             <Button
                                             className='btn_qr'

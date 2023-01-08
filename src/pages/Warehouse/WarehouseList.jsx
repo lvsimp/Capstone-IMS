@@ -28,7 +28,7 @@ export default function WarehouseList(){
         axios
         .get(`${URL}/warehouse`)
         .then(res => {
-            console.log(res.data)
+        
             setWarehouseList(res.data);
         })
         .catch(err => console.log(err));
@@ -67,7 +67,7 @@ export default function WarehouseList(){
                                             <td>{item.address}</td>
                                             <td>Stepahy Dola</td>
                                             <td>(495-239-2931)</td>
-                                            <td>3000</td>
+                                            <td>{item.item_count}</td>
                                             <td>
                                                 <Button 
                                                         className='btn_edit'

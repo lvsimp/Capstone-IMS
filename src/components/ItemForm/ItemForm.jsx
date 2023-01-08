@@ -68,7 +68,6 @@ export default function ItemForm({onHandleSubmit, detail}){
             onSubmit={(e) => {
                 e.preventDefault();
                 const formData = new FormData();
-                    formData.append("images", file, file.name)
                     formData.append("name", itemName)
                     formData.append("description", description)
                     formData.append("price", price)
@@ -77,6 +76,10 @@ export default function ItemForm({onHandleSubmit, detail}){
                     formData.append("warehouse_id", warehouse)
                     formData.append("supplier_id", supplier)
 
+                if(typeof file === 'object'){
+                    formData.append("images", file, file.name)
+                }
+                
                 onHandleSubmit(formData)
             }}
         >
