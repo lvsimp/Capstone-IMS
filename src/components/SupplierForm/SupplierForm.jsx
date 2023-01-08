@@ -15,13 +15,6 @@ export default function SupplierForm({onHandleSubmit, details}){
     const [file, setFile] = useState(details?.images);
     const [preview, setPreview] = useState()
 
-    // const supplierDetails = {
-    //     name: supplierName,
-    //     address: supplierAddress,
-    //     phone: supplierPhone,
-    //     email: supplierEmail,
-    //     contact_person: supplierContactPerson
-    // }
 
     return(
          <Form 
@@ -34,6 +27,11 @@ export default function SupplierForm({onHandleSubmit, details}){
                         formData.append('phone', supplierPhone);
                         formData.append('email', supplierEmail);
                         formData.append('contact_person', supplierContactPerson);
+
+                        if(typeof file === 'object'){
+                            formData.append('images', file, file.name);
+                        }
+
                         onHandleSubmit(formData)
                 }}
             >
@@ -112,8 +110,8 @@ export default function SupplierForm({onHandleSubmit, details}){
                     </div>
                 </Form.Group>
                 <Form.Group className='supplier_form__group'>
-                    <Button className='btn_cancel' as={Link} to='/supplier'>Cancel</Button> 
                     <Button className='btn_save' type='submit'>Save</Button>
+                    <Button className='btn_cancel' as={Link} to='/supplier'>Cancel</Button> 
                 </Form.Group>
             </Form>
     );

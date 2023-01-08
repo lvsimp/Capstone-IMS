@@ -2,6 +2,7 @@ import CategoryForm from "../../components/CatergoryForm/CategoryForm";
 import { useNavigate , useParams} from "react-router-dom";
 import { useState, useEffect} from "react";
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 export default function EditCategory(){
 
@@ -26,11 +27,22 @@ export default function EditCategory(){
         axios
             .put(`${URL}/category/${categoryId}`, details)
             .then(res => {
-                console.log(res.data);
-                alert('Category has been updated.')
-                navigate('/category');
+                if(res.data){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Category Updated Successfully',
+                        text: ` You updated ${res.data[0].type}`
+                    })
+                    navigate('/category')
+                }
             })
-            .catch(err => console.log(`Can't update category. ${err}`));
+            .catch(err =>  {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unexpected Error',
+                    text: err
+                })
+            });
     }
      
 

@@ -2,6 +2,8 @@ import SupplierForm from "../../components/SupplierForm/SupplierForm";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Swal from 'sweetalert2';
+
 export default function AddSupplier(){
 
     const URL = process.env.REACT_APP_SERVER_URL || '';
@@ -14,12 +16,22 @@ export default function AddSupplier(){
             headers: {'Content-Type' : 'multipart/form-data'}
         })
         .then(res =>{
-            console.log(res.data);
-            alert("A new Supplier Added.");
-            navigate('/supplier');
-
+            if(res.data){
+                Swal.fire({
+                    icon : 'success',
+                    title: 'Supplier Added Successfully',
+                    text: `You added ${res.data[0].name}`
+                })
+                navigate('/supplier')
+            }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Unexpected Error',
+                text: err
+            })
+        });
     }
     return(
         <>

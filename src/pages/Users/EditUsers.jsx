@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate , useParams, Link} from "react-router-dom";
 import { useState, useEffect } from "react";
 import './User.scss';
-
+import Swal from 'sweetalert2';
 
 export default function EditUsers(){
 
@@ -42,11 +42,22 @@ export default function EditUsers(){
         axios
             .put(`${URL}/users/${userId}`, userDetail)
             .then(res => {
-                console.log(res.data)
-                alert('a user is updated.');
-                navigate('/user');
+                if(res.data){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'User Updated Successfully',
+                        text: ` You updated ${res.data[0].first_name}`
+                    })
+                    navigate('/user')
+                }
             })
-            .catch(err => console.log(`Something is wrong please try again later ${err}`));
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unexpected Error',
+                    text: err
+                })
+            });
 
     }
 

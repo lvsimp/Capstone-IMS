@@ -33,13 +33,19 @@ export default function EditItem(){
                 if(res.data){
                     Swal.fire({
                         icon: 'success',
-                        title: 'Update Successful',
+                        title: 'Item Updated Successful',
                         text: ` You updated ${res.data[0].name}`
                     })
                     navigate('/items');
                 }
             })
-            .catch(err => console.log(`Can't Update item. ${err}`))
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unexpected Error',
+                    text: err
+                })
+            })
         
     }
 

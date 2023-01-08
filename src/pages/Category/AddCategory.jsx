@@ -1,7 +1,7 @@
 import CategoryForm from "../../components/CatergoryForm/CategoryForm";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-
+import Swal from "sweetalert2";
 export default function AddCategory(){
 
     const URL = process.env.REACT_APP_SERVER_URL || '';
@@ -12,10 +12,23 @@ export default function AddCategory(){
         axios
             .post(`${URL}/category`, categoryDetail)
             .then( res => {
-                console.log(res.data);
-                navigate('/category')
+                if(res.data){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Category Added Successfully',
+                        text: ` You updated ${res.data[0].type}`
+                    })
+                    navigate('/category');
+                }
             })
-            .catch(err => console.log(`Something is wrong ${err}`));
+            .catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unexpected Error',
+                    text: err
+                })
+            })
+        
     }
 
     return(

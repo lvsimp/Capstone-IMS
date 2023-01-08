@@ -34,7 +34,7 @@ export default function EditWarehouse(){
                if(res.data){
                 Swal.fire({
                     icon: 'success',
-                    title: 'Updated Successfully',
+                    title: 'Warehouse Updated Successfully',
                     text: `You updated ${res.data[0].name}`
                 })
                 navigate('/warehouse')

@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import {Form, Button} from 'react-bootstrap';
 import { useState } from 'react';
 import './User.scss';
+import Swal from "sweetalert2";
 
 export default function AddUsers(){
     const navigate = useNavigate();
@@ -31,11 +32,22 @@ export default function AddUsers(){
         axios
             .post(`${URL}/users`, userDetail)
             .then(res => {
-                console.log(res.data)
-                alert('a user is added.');
-                navigate('/user');
+                if(res.data){
+                    Swal.fire({
+                        icon : 'success',
+                        title: 'Employee Added Successfully',
+                        text: `You added ${res.data[0].name}`
+                    })
+                    navigate('/user')
+                }
             })
-            .catch(err => console.log(`Something is wrong please try again later ${err}`));
+            .catch(err => {  
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unexpected Error',
+                    text: err
+                })
+            });
 
     }
 

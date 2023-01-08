@@ -79,8 +79,10 @@
             margin: 1rem 0;
 
             &:last-child{
-               display: flex;
-               justify-content: flex-end;
+                width: 30%;
+                display: flex;
+                justify-content: space-evenly;
+                margin-left: auto;
             }
 
             &_img{
@@ -90,7 +92,7 @@
             }
 
             &_input{
-                width: 80%;
+                width: 78%;
                 height: 2.3rem;
                 align-self: center;
             }

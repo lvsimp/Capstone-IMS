@@ -81,8 +81,10 @@
             margin: 1rem 0;
 
             &:last-child{
+                width: 30%;
                 display: flex;
-                justify-content: flex-end;
+                justify-content: space-evenly;
+                margin-left: auto;
              }
  
              &_img{

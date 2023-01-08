@@ -17,11 +17,10 @@ export default function AddWarehouse(){
                 headers: {'Content-Type' : 'multipart/form-data'}
             })
             .then(res => {
-                console.log(res.data)
                if(res.data){
                 Swal.fire({
                     icon: 'success', 
-                    title: 'Added Warehouse Sucessfully',
+                    title: 'Warehouse Added Sucessfully',
                     text: `You added ${res.data[0].name}`
                 })
                 navigate('/warehouse');
@@ -31,7 +30,7 @@ export default function AddWarehouse(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Unexpected Error',
-                    text: `${err}`
+                    text: err
                 })
             });
     }

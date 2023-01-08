@@ -21,7 +21,7 @@ export default function AddItem(){
                if(res.data){
                 Swal.fire({
                     icon: 'success',
-                    title: 'Added Item Successfully',
+                    title: 'Item Added Successfully',
                     text:  `You added ${res.data[0].name}`
                 })
                 navigate('/items');

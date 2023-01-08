@@ -2,7 +2,7 @@ import SupplierForm from "../../components/SupplierForm/SupplierForm";
 import axios from 'axios';
 import { useState , useEffect} from "react";
 import { useNavigate , useParams} from "react-router-dom";
-
+import Swal from 'sweetalert2';
 
 export default function EditSupplier(){
 
@@ -23,21 +23,30 @@ export default function EditSupplier(){
 
     },[supplierId, URL])
 
-    function onHandleUpdateSupplier(event , supplierDetails){
-        event.preventDefault();
-
-        console.log(supplierDetails);
+    function onHandleUpdateSupplier( supplierDetails){
 
         axios
-            .put(`${URL}/supplier/${supplierId}`, supplierDetails)
+            .put(`${URL}/supplier/${supplierId}`, supplierDetails, {
+                headers : {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
             .then(res =>{
-                console.log(res.data);
-                alert(`supplier with id ${supplierId} has been updated.`);
-                navigate('/supplier');
+               if(res.data){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Supplier Updated Successfully',
+                        text: `You updated ${res.data[0].name}`
+                    })
+                    navigate('/supplier')
+                }
             })
             .catch(error => {
-                alert('Something is wrong please try again later.');
-                console.log(error);
+                Swal.fire({
+                    icon : 'error',
+                    title: 'Unexpected Error',
+                    text: error
+                })
              })
 
     }
