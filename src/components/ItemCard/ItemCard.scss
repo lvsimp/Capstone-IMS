@@ -1,0 +1,10 @@
+@use '../../style//partials/variables' as *;
+
+.item{
+
+    &_card{
+        height: auto;
+        width: 25%;
+        box-shadow: -8px 8px 10px -6px rgba(102,92,92,0.75);
+    }
+}

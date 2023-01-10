@@ -75,6 +75,7 @@ function App() {
   const unsetUser =()=>{
     sessionStorage.removeItem('token');
     setUser(null);
+    setIsLoggedIn(false);
   }
 
   return (
