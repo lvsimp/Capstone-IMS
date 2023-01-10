@@ -1,0 +1,10 @@
+@use '../../style//partials/variables' as *;
+
+.order{
+
+    &_main{
+        width: 98%;
+        padding: 1rem;
+        
+    }
+}

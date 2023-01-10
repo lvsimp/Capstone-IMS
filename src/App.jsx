@@ -39,7 +39,8 @@ import AddCategory from './pages/Category/AddCategory';
 import EditCategory from './pages/Category/EditCategory';
 //dashboard
 import Dashboard from './pages/Dashboard/Dashboard';
-
+//orders
+import Orders from './pages/Orders/Orders';
 
 function App() {
 
@@ -91,7 +92,8 @@ function App() {
                 <Route path='/Signup' element={<Signup />}/>
                 {/* for dashboard */}
                 <Route path='/dashboard' element={<Dashboard />}/>
-
+                {/* for orders */}
+                <Route path='/orders' element={<Orders />}/> 
                 {/* for items */}
                 <Route path='/items' element={<ItemLists />}/>
                 <Route path='/items/:itemId' element={< ItemDetail/>} />

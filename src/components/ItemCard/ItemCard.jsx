@@ -1,4 +1,4 @@
-import {Card, Button, Form} from 'react-bootstrap';
+import {Card, Button} from 'react-bootstrap';
 import './ItemCard.scss';
 import Swal from 'sweetalert2';
 
@@ -7,6 +7,9 @@ export default function ItemCard({itemDetails}){
     const URL = process.env.REACT_APP_SERVER_URL || '';
 
     const handleAddtoOrder = (data) =>{
+
+        const orders = JSON.parse(localStorage.getItem('tempOrders'));
+
         Swal.fire({
             title: `Quantity of ${data?.name}`,
             icon: 'question',
@@ -17,10 +20,16 @@ export default function ItemCard({itemDetails}){
                 max: 50,
                 step: 1
             },
+            showCancelButton: true
         }).then(result => {
-            
             data.quantity = result.value
-            console.log(data)
+            if(orders === null){
+                localStorage.setItem('tempOrders', JSON.stringify([data]));
+            }else{
+                orders.push(data);
+                localStorage.setItem('tempOrders', JSON.stringify(orders));
+            }
+
         })
     }
 
