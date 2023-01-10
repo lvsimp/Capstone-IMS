@@ -6,5 +6,74 @@
         width: 98%;
         padding: 1rem;
         
+        &_table{
+            width: 100%;
+            border-radius: 15px;
+            border-spacing: 0;
+            background-color: #D5E7EE;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1rem;
+            box-shadow: 0px 8px 10px rgba(94, 91, 169, .25);
+            
+            th{
+                font-weight: bold;
+                font-size: 1.25rem;
+                padding-top: 1rem;
+            }
+            
+            tbody{
+                tr:last-child{
+                    td{
+                        border: 0;
+                    }
+                }
+            }
+        }
+
+        &_btn{
+
+            &_con{
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                padding: 1rem;
+                margin: 2rem
+            }
+
+        }
+    }
+
+    &_row{
+
+        td{
+            padding: 1rem 0;
+            border-bottom: 1px solid #666666;
+
+            &:first-child, &:nth-child(2){
+                width: 25%;
+            }
+
+            img{
+                height: auto;
+                margin: auto;
+                border-radius: 15px;
+                width: 80%;
+            }
+        }
+    }
+
+    &_total{
+        td{
+            padding: 1rem;
+        }
+        span{
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        &:last-child{
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
     }
 }
