@@ -3,14 +3,15 @@ import { useNavigate , useParams} from "react-router-dom";
 import { useState, useEffect} from "react";
 import axios from 'axios';
 import Swal from "sweetalert2";
+import PageHeader from "../../components/PageHeader/PageHeader";
 
 export default function EditCategory(){
 
+    const title = <h1 className='page_header__title'> Edit Category</h1>
     const URL = process.env.REACT_APP_SERVER_URL || '';
     const navigate = useNavigate();
     const {categoryId} = useParams();
     const [categoryDetail, setCategoryDetail] = useState();
-
     useEffect(() => {
 
         axios
@@ -48,10 +49,15 @@ export default function EditCategory(){
 
     return(
         <>
-            {
-                categoryDetail &&
-                <CategoryForm title='Edit Category' handleOnSubmit={handleOnUpdateCategory} detail={categoryDetail}/>
-            }
+            <PageHeader page_title={title} />
+            <main>
+                <div className="category_main">
+                    {
+                        categoryDetail &&
+                        <CategoryForm title='Edit Category' handleOnSubmit={handleOnUpdateCategory} detail={categoryDetail}/>
+                    }
+                </div>
+            </main>
         </>
     )
 }

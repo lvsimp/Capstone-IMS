@@ -5,7 +5,7 @@ import '../../pages/Category/Category.scss';
 import {Link} from 'react-router-dom';
 
 
-export default function CategoryForm({ detail, handleOnSubmit, title}){
+export default function CategoryForm({ detail, handleOnSubmit}){
 
 
     const [categoryName, setCategoryName] = useState(detail?.type);
@@ -14,16 +14,16 @@ export default function CategoryForm({ detail, handleOnSubmit, title}){
 
 
     return (
-        <div className='category_form__container'>
-            <h2 className='category_form__title'>{title}</h2>
-            <Form id='catForm'
-                    onSubmit={ e => {
-                                handleOnSubmit(e, {type:categoryName})
-                                setFormSubmit(true);
-                            }
+            <Form 
+                className='category_form'
+                id='catForm'
+                onSubmit={ e => {
+                            handleOnSubmit(e, {type:categoryName})
+                            setFormSubmit(true);
                         }
-                >
-                <Form.Group>
+                    }
+            >
+                <Form.Group className='category_form__group'>
                     <Form.Label>Category Name</Form.Label>
                     <Form.Control 
                         type = 'text'
@@ -40,11 +40,10 @@ export default function CategoryForm({ detail, handleOnSubmit, title}){
                         Category Name is Required
                     </Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group className='btn_container'>
+                <Form.Group className='category_form__group'>
                     <Button as={Link} to='/category'>Cancel</Button>
                     <Button type='submit' className='btn_save'>Save</Button>
                 </Form.Group>
             </Form>
-        </div>
     );
 }

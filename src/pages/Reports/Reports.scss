@@ -1,0 +1,32 @@
+@use '../../style//partials/variables' as *;
+
+.report{
+
+    &_main{
+        width: 98%;
+        padding: 1rem;
+        
+        &_container{
+            background-color: $bg-nav;
+            margin: 1rem auto;
+            padding: 1rem;
+            width: 50%;
+            border-radius: 15px;
+        }
+
+    }
+
+    &_table{
+        width: 100%;
+    }
+
+    &_row{
+        width: 100%;
+        td{
+            &:first-child{
+                width: 50%;
+            }
+        }
+    }
+ 
+}
