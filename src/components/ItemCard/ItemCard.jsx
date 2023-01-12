@@ -22,14 +22,22 @@ export default function ItemCard({itemDetails}){
             },
             showCancelButton: true
         }).then(result => {
-            data.quantity = result.value
-            if(orders === null){
-                localStorage.setItem('tempOrders', JSON.stringify([data]));
-            }else{
-                orders.push(data);
-                localStorage.setItem('tempOrders', JSON.stringify(orders));
-            }
+            if(result.value){
+                if(orders === null){
+                    data.quantity = parseInt(result.value)
+                    localStorage.setItem('tempOrders', JSON.stringify([data]));
+                }else{
+                     const founditem = orders.find(elem =>elem.id === data.id)
+                     if(founditem){
+                       founditem.quantity = parseInt(founditem?.quantity) + parseInt(result.value);
 
+                    }else{
+                        data.quantity = parseInt(result.value)
+                        orders.push(data);
+                    }
+                    localStorage.setItem('tempOrders', JSON.stringify(orders));
+                }
+            }
         })
     }
 

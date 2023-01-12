@@ -8,6 +8,7 @@ import {useState, useEffect, useContext} from 'react';
 import {Link , useNavigate} from 'react-router-dom';
 import UserContext from '../../UserContext';
 import {Button} from 'react-bootstrap';
+import Swal from 'sweetalert2';
 import '../../style/btn.scss';
 import axios from 'axios';
 import './Item.scss';
@@ -39,8 +40,37 @@ export default function ItemLists(){
 
     }, [itemList, URL])
 
-
-
+    async function handleOnToOrders(){
+        const { value: formValues } = await Swal.fire({
+            title: 'Recipient',
+            html:
+              '<input id="swal-input1" class="swal2-input" placeholder="Name">' +
+              '<input id="swal-input2" class="swal2-input" placeholder="Address">',
+            focusConfirm: false,
+            showCancelButton: true,
+            preConfirm: () => {
+              return (
+                {
+                  customer_name: document.getElementById('swal-input1').value,
+                  customer_address: document.getElementById('swal-input2').value  
+                }
+              )
+            }
+          })
+          
+          if (formValues) {
+            const inputData ={
+              ...formValues,
+              total_cost: 0,
+              created_by: user?.id
+            }
+            axios
+              .post(`${URL}/transaction`, inputData)
+              .then(res => { navigate('/orders')})
+              .catch(err => console.log(err))
+         }
+    }
+            
     return (
         <>
             {
@@ -110,6 +140,9 @@ export default function ItemLists(){
                     <PageHeader page_title={anotitle} />
                     <main>
                         <div className='item_main'>
+                            <div className="item_order">
+                                <Button onClick={() => handleOnToOrders()}>Go to Orders</Button>
+                            </div>
                             <div className="item_main_card">
                                 {
                                     itemList && 

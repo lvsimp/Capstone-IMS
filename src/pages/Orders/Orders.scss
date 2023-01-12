@@ -2,6 +2,13 @@
 
 .order{
 
+    &_name{
+        margin: .5rem 0 ;
+        select {
+            text-align: center;
+        }
+    }
+
     &_main{
         width: 98%;
         padding: 1rem;
